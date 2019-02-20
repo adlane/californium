@@ -467,18 +467,17 @@ public abstract class CongestionControlLayer extends ReliabilityLayer {
 	public static CongestionControlLayer newImplementation(final NetworkConfig config) {
 
 		final String implementation = config.getString(NetworkConfig.Keys.CONGESTION_CONTROL_ALGORITHM, "Cocoa");
-		switch(implementation) {
-		case "Cocoa":
+		if (implementation.equals("Cocoa")) {
 			return new Cocoa(config);
-		case "CocoaStrong":
+		} else if (implementation.equals("CocoaStrong")) {
 			return new CocoaStrong(config);
-		case "BasicRto":
+		} else if (implementation.equals("BasicRto")) {
 			return new BasicRto(config);
-		case "LinuxRto":
+		} else if (implementation.equals("LinuxRto")) {
 			return new LinuxRto(config);
-		case "PeakhopperRto":
+		} else if (implementation.equals("PeakhopperRto")) {
 			return new PeakhopperRto(config);
-		default:
+		} else {
 			LOGGER.info(
 				"configuration contains unsupported {}, using Cocoa",
 				NetworkConfig.Keys.CONGESTION_CONTROL_ALGORITHM);
