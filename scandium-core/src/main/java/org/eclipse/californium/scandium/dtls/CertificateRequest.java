@@ -531,7 +531,9 @@ public final class CertificateRequest extends HandshakeMessage {
 				Signature sign = Signature.getInstance(supportedAlgorithm.jcaName());
 				sign.initVerify(key);
 				return supportedAlgorithm;
-			} catch (NoSuchAlgorithmException | InvalidKeyException e) {
+			} catch (NoSuchAlgorithmException e) {
+				// nothing to do
+			} catch (InvalidKeyException e) {
 				// nothing to do
 			}
 		}

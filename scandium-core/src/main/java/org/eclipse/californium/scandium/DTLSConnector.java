@@ -857,7 +857,10 @@ public class DTLSConnector implements Connector {
 						session.markRecordAsRead(record.getEpoch(), record.getSequenceNumber());
 						// create application message.
 						receivedApplicationMessage = RawData.inbound(message.getData(), session.getConnectionReadContext(), false);
-					} catch (HandshakeException | GeneralSecurityException e) {
+					} catch (HandshakeException e) {
+						// this means that we could not parse or decrypt the message
+						discardRecord(record, e);
+					} catch (GeneralSecurityException e) {
 						// this means that we could not parse or decrypt the message
 						discardRecord(record, e);
 					}
@@ -961,7 +964,9 @@ public class DTLSConnector implements Connector {
 			if (null != error && null != handshaker) {
 				handshaker.handshakeFailed(error);
 			}
-		} catch (HandshakeException | GeneralSecurityException e) {
+		} catch (HandshakeException e) {
+			discardRecord(record, e);
+		} catch (GeneralSecurityException e) {
 			discardRecord(record, e);
 		}
 	}

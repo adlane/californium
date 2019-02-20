@@ -77,7 +77,9 @@ public final class DtlsTestTools {
 			serverCertificateChain = getCertificateChain(keyStore, SERVER_NAME);
 			clientCertificateChain = getCertificateChain(keyStore, CLIENT_NAME);
 			nosigningCertificate = (X509Certificate) keyStore.getCertificate(NO_SIGNING_ALIAS);
-		} catch (IOException | GeneralSecurityException e) {
+		} catch (IOException e) {
+			// nothing we can do
+		} catch (GeneralSecurityException e) {
 			// nothing we can do
 		}
 	}

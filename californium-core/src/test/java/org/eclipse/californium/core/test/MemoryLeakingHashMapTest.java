@@ -426,7 +426,9 @@ public class MemoryLeakingHashMapTest {
 				this.scheduledTimer.cancel(false);
 				try {
 					this.scheduledTimer.get();
-				} catch (InterruptedException | CancellationException | ExecutionException e) {
+				} catch (InterruptedException e) {
+				} catch (CancellationException e) {
+				} catch (ExecutionException e) {
 				}
 				this.scheduledTimer = null;
 			}

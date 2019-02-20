@@ -116,7 +116,10 @@ public class RawPublicKeyIdentity implements Principal {
 			String base64urlDigest = Base64.encodeBytes(digest, BASE_64_ENCODING_OPTIONS);
 			StringBuilder b = new StringBuilder("ni:///sha-256;").append(base64urlDigest);
 			niUri = b.toString();
-		} catch (NoSuchAlgorithmException | IOException e) {
+		} catch (NoSuchAlgorithmException e) {
+			// should not happen because SHA-256 is a mandatory message digest algorithm for any Java 7 VM
+			// no Base64 encoding of InputStream is done
+		} catch (IOException e) {
 			// should not happen because SHA-256 is a mandatory message digest algorithm for any Java 7 VM
 			// no Base64 encoding of InputStream is done
 		}

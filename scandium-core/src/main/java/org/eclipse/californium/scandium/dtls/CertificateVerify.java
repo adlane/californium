@@ -202,7 +202,11 @@ public final class CertificateVerify extends HandshakeMessage {
 
 			verified = signature.verify(signatureBytes);
 
-		} catch (SignatureException | InvalidKeyException | NoSuchAlgorithmException e) {
+		} catch (SignatureException e) {
+			LOGGER.error("Could not verify the client's signature.", e);
+		} catch (InvalidKeyException e) {
+			LOGGER.error("Could not verify the client's signature.", e);
+		} catch (NoSuchAlgorithmException e) {
 			LOGGER.error("Could not verify the client's signature.", e);
 		}
 		
