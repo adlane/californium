@@ -124,7 +124,7 @@ import org.junit.runners.Parameterized;
 			parser.parseMessage(malformedRequest);
 			fail("Parser should have detected that message is not a request");
 		} catch (CoAPMessageFormatException e) {
-			assertEquals(0b00000111, e.getCode());
+			assertEquals(0x07, e.getCode());
 			assertEquals(true, e.isConfirmable());
 			// THEN an exception is thrown by the parser
 		}
