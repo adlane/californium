@@ -1085,7 +1085,12 @@ public class DTLSConnector implements Connector, RecordLayer {
 						RawData receivedApplicationMessage = RawData.inbound(message.getData(), context, false);
 						channel.receiveData(receivedApplicationMessage);
 					}
-				} catch (HandshakeException | GeneralSecurityException e) {
+				} catch (HandshakeException e) {
+					// this means that we could not parse or decrypt the message
+					LOGGER.debug("Discarding APPLICATION_DATA record received from peer [{}]",
+							record.getPeerAddress(), e);
+					discardRecord(record, e);
+				} catch (GeneralSecurityException e) {
 					// this means that we could not parse or decrypt the message
 					LOGGER.debug("Discarding APPLICATION_DATA record received from peer [{}]",
 							record.getPeerAddress(), e);
@@ -1154,7 +1159,9 @@ public class DTLSConnector implements Connector, RecordLayer {
 			if (null != error && null != handshaker) {
 				handshaker.handshakeFailed(error);
 			}
-		} catch (HandshakeException | GeneralSecurityException e) {
+		} catch (HandshakeException e) {
+			discardRecord(record, e);
+		} catch (GeneralSecurityException e) {
 			discardRecord(record, e);
 		}
 	}

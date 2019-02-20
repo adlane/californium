@@ -72,7 +72,9 @@ public final class DtlsTestTools {
 			X509Certificate[] chain = SslContextUtil.loadCertificateChain(
 					SslContextUtil.CLASSPATH_SCHEME + KEY_STORE_LOCATION, NO_SIGNING_ALIAS, KEY_STORE_PASSWORD);
 			nosigningCertificate = chain[0];
-		} catch (IOException | GeneralSecurityException e) {
+		} catch (IOException e) {
+			// nothing we can do
+		} catch (GeneralSecurityException e) {
 			// nothing we can do
 		}
 	}
