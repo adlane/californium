@@ -54,7 +54,7 @@ public class SerialExecutor extends AbstractExecutorService {
 	/**
 	 * Queue for serialized jobs.
 	 */
-	private final BlockingQueue<Runnable> tasks = new LinkedBlockingQueue<>();
+	private final BlockingQueue<Runnable> tasks = new LinkedBlockingQueue<Runnable>();
 
 	/**
 	 * Lock to protected simultaneous access.
@@ -193,7 +193,7 @@ public class SerialExecutor extends AbstractExecutorService {
 	public List<Runnable> shutdownNow() {
 		lock.lock();
 		try {
-			List<Runnable> pending = new ArrayList<>(tasks.size());
+			List<Runnable> pending = new ArrayList<Runnable>(tasks.size());
 			shutdownNow(pending);
 			return pending;
 		} finally {

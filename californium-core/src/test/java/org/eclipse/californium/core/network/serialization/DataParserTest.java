@@ -74,7 +74,7 @@ public class DataParserTest {
 	}
 
 	@Parameterized.Parameters public static List<Object[]> parameters() {
-		List<Object[]> parameters = new ArrayList<>();
+		List<Object[]> parameters = new ArrayList<Object[]>();
 		parameters.add(new Object[] { new UdpDataSerializer(), new UdpDataParser(), 7 });
 		parameters.add(new Object[] { new TcpDataSerializer(), new TcpDataParser(), Message.NONE });
 		return parameters;

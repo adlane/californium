@@ -290,7 +290,7 @@ public final class CertificateMessage extends HandshakeMessage {
 	private static CertificateMessage readX509CertificateMessage(final DatagramReader reader, final InetSocketAddress peerAddress) throws HandshakeException {
 
 		LOGGER.debug("Parsing X.509 CERTIFICATE message");
-		List<Certificate> certs = new ArrayList<>();
+		List<Certificate> certs = new ArrayList<Certificate>();
 		int certificateChainLength = reader.read(CERTIFICATE_LIST_LENGTH);
 		DatagramReader rangeReader = reader.createRangeReader(certificateChainLength);
 		try {

@@ -520,7 +520,7 @@ public final class ECDHECryptography {
 		 * @see #isUsable()
 		 */
 		public static SupportedGroup[] getUsableGroups() {
-			List<SupportedGroup> result = new ArrayList<>();
+			List<SupportedGroup> result = new ArrayList<SupportedGroup>();
 			for (SupportedGroup group : SupportedGroup.values()) {
 				if (group.isUsable()) {
 					result.add(group);
@@ -536,7 +536,7 @@ public final class ECDHECryptography {
 		 */
 		public static List<SupportedGroup> getPreferredGroups() {
 			SupportedGroup usableGroup = null;
-			List<SupportedGroup> result = new ArrayList<>();
+			List<SupportedGroup> result = new ArrayList<SupportedGroup>();
 			for (SupportedGroup group : SupportedGroup.values()) {
 				switch(group) {
 				case secp256r1:

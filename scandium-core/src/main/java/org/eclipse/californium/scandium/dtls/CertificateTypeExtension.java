@@ -88,7 +88,7 @@ public abstract class CertificateTypeExtension extends HelloExtension {
 			// an extension containing a list of preferred certificate types
 			// is at least 2 bytes long (1 byte length, 1 byte type)
 			int length = extensionDataReader.read(LIST_FIELD_LENGTH_BITS);
-			types = new ArrayList<>(length);
+			types = new ArrayList<CertificateType>(length);
 			DatagramReader rangeReader = extensionDataReader.createRangeReader(length);
 			while (rangeReader.bytesAvailable()) {
 				int typeCode = rangeReader.read(EXTENSION_TYPE_BITS);
@@ -106,7 +106,7 @@ public abstract class CertificateTypeExtension extends HelloExtension {
 			int typeCode = extensionDataReader.read(EXTENSION_TYPE_BITS);
 			CertificateType certificateType = CertificateType.getTypeFromCode(typeCode);
 			if (certificateType != null) {
-				types = new ArrayList<>(1);
+				types = new ArrayList<CertificateType>(1);
 				types.add(certificateType);
 			} else {
 				// server selected a certificate type that is unknown to this client
@@ -152,7 +152,7 @@ public abstract class CertificateTypeExtension extends HelloExtension {
 			throw new NullPointerException("certificate type must not be null!");
 		}
 		this.isClientExtension = false;
-		this.certificateTypes = new ArrayList<>(1);
+		this.certificateTypes = new ArrayList<CertificateType>(1);
 		this.certificateTypes.add(certificateType);
 	}
 

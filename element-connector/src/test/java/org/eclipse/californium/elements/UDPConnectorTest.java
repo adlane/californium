@@ -58,7 +58,7 @@ public class UDPConnectorTest {
 
 	UDPConnector connector;
 	UDPConnector destination;
-	LinkedBlockingQueue<RawData> incoming = new LinkedBlockingQueue<>();
+	LinkedBlockingQueue<RawData> incoming = new LinkedBlockingQueue<RawData>();
 	TestEndpointContextMatcher matcher;
 
 	@Before

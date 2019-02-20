@@ -83,13 +83,13 @@ public final class ClientHello extends HandshakeMessage {
 	 * This is a list of the cryptographic options supported by the client, with
 	 * the client's first preference first.
 	 */
-	private List<CipherSuite> supportedCipherSuites = new ArrayList<>();
+	private List<CipherSuite> supportedCipherSuites = new ArrayList<CipherSuite>();
 
 	/**
 	 * This is a list of the compression methods supported by the client, sorted
 	 * by client preference.
 	 */
-	private List<CompressionMethod> compressionMethods = new ArrayList<>();
+	private List<CompressionMethod> compressionMethods = new ArrayList<CompressionMethod>();
 
 	/**
 	 * Clients MAY request extended functionality from servers by sending data

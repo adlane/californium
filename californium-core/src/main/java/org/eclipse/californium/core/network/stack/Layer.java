@@ -158,7 +158,7 @@ public interface Layer {
 	public static final class TopDownBuilder {
 
 		/** The stack in order as added */
-		private final List<Layer> stack = new ArrayList<>();;
+		private final List<Layer> stack = new ArrayList<Layer>();
 		private Layer bottom;
 
 		/**

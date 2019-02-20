@@ -59,7 +59,7 @@ public class TlsCorrelationTest {
 	@Rule
 	public ThreadsRule threads = THREADS_RULE;
 
-	private final List<Connector> cleanup = new ArrayList<>();
+	private final List<Connector> cleanup = new ArrayList<Connector>();
 
 	@BeforeClass
 	public static void initializeSsl() throws Exception {

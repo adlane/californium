@@ -318,7 +318,7 @@ public class HandshakerTest {
 	}
 
 	private void givenAFragmentedHandshakeMessage(HandshakeMessage message, int fragmentStep, int maxFragmentSize) {
-		List<FragmentedHandshakeMessage> fragments = new LinkedList<>();
+		List<FragmentedHandshakeMessage> fragments = new LinkedList<FragmentedHandshakeMessage>();
 		byte[] serializedMsg = message.fragmentToByteArray();
 		int fragmentOffset = 0;
 		while (fragmentOffset < serializedMsg.length) {

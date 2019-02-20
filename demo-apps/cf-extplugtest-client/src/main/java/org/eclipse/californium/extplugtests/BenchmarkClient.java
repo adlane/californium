@@ -639,7 +639,7 @@ public class BenchmarkClient {
 		overallRequestsDownCounter.set(overallRequests);
 		overallReverseResponsesDownCounter = new CountDownLatch(overallReverseResponses);
 
-		List<BenchmarkClient> clientList = new ArrayList<>(clients);
+		List<BenchmarkClient> clientList = new ArrayList<BenchmarkClient>(clients);
 		ScheduledExecutorService executor = ExecutorsUtil
 				.newScheduledThreadPool(Runtime.getRuntime().availableProcessors(), new DaemonThreadFactory("Aux#"));
 

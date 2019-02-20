@@ -35,7 +35,7 @@ public final class ServerNames implements Iterable<ServerName> {
 	int encodedLength; // overall length
 
 	private ServerNames() {
-		names = new LinkedHashSet<>();
+		names = new LinkedHashSet<ServerName>();
 	}
 
 	private ServerNames(final ServerName serverName) {

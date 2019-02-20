@@ -58,13 +58,13 @@ public class TcpConnectorTest {
 	public ThreadsRule threads = THREADS_RULE;
 
 	private final int messageSize;
-	private final List<Connector> cleanup = new ArrayList<>();
+	private final List<Connector> cleanup = new ArrayList<Connector>();
 
 	@Parameterized.Parameters
 	public static List<Object[]> parameters() {
 		// Trying different messages size to hit sharp corners in Coap-over-TCP
 		// spec
-		List<Object[]> parameters = new ArrayList<>();
+		List<Object[]> parameters = new ArrayList<Object[]>();
 		parameters.add(new Object[] { 0 });
 		parameters.add(new Object[] { 7 });
 		parameters.add(new Object[] { 13 });
@@ -128,7 +128,7 @@ public class TcpConnectorTest {
 		server.setRawDataReceiver(serverCatcher);
 		server.start();
 
-		List<RawData> messages = new ArrayList<>();
+		List<RawData> messages = new ArrayList<RawData>();
 		for (int i = 0; i < NUMBER_OF_CONNECTIONS; i++) {
 			TcpClientConnector client = new TcpClientConnector(NUMBER_OF_THREADS, CONNECTION_TIMEOUT_IN_MS,
 					IDLE_TIMEOUT_IN_S);

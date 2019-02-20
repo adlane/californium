@@ -234,13 +234,13 @@ public class CoapEndpoint implements Endpoint {
 	private volatile boolean started;
 
 	/** The list of endpoint observers (has nothing to do with CoAP observe relations) */
-	private List<EndpointObserver> observers = new CopyOnWriteArrayList<>();
+	private List<EndpointObserver> observers = new CopyOnWriteArrayList<EndpointObserver>();
 
 	/** The list of interceptors */
-	private List<MessageInterceptor> interceptors = new CopyOnWriteArrayList<>();
+	private List<MessageInterceptor> interceptors = new CopyOnWriteArrayList<MessageInterceptor>();
 
 	/** The list of Notification listener (use for CoAP observer relations) */
-	private List<NotificationListener> notificationListeners = new CopyOnWriteArrayList<>();
+	private List<NotificationListener> notificationListeners = new CopyOnWriteArrayList<NotificationListener>();
 
 	private final EndpointReceiver endpointStackReceiver = new EndpointReceiver() {
 

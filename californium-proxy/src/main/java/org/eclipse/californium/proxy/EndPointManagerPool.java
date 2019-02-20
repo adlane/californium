@@ -32,7 +32,7 @@ public class EndPointManagerPool {
 	 private static final Logger LOGGER = LoggerFactory.getLogger(EndPointManagerPool.class);
 
 	private static Queue<EndpointManager> initManagerPool(final int size) {
-		final Queue<EndpointManager> clients = new ArrayDeque<>(size);
+		final Queue<EndpointManager> clients = new ArrayDeque<EndpointManager>(size);
 
 		for (int i = 0; i < size; i++) {
 			clients.add(createManager());

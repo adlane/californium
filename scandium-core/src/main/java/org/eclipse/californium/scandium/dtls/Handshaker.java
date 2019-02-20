@@ -221,7 +221,7 @@ public abstract class Handshaker {
 	 */
 	protected boolean useStateValidation;
 
-	private final Set<SessionListener> sessionListeners = new LinkedHashSet<>();
+	private final Set<SessionListener> sessionListeners = new LinkedHashSet<SessionListener>();
 	
 	protected int statesIndex;
 	protected HandshakeState[] states;
@@ -303,7 +303,7 @@ public abstract class Handshaker {
 
 		private Record changeCipherSpec = null;
 
-		private SortedSet<Record> queue = new TreeSet<>(new Comparator<Record>() {
+		private SortedSet<Record> queue = new TreeSet<Record>(new Comparator<Record>() {
 
 			@Override
 			public int compare(Record r1, Record r2) {

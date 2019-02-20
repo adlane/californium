@@ -72,7 +72,7 @@ public class MessageTest {
 	@Test
 	public void testAddListOfMessageObservers() {
 		Request ping = new Request(null, Type.CON);
-		List<MessageObserver> observers = new ArrayList<>();
+		List<MessageObserver> observers = new ArrayList<MessageObserver>();
 		observers.add(new MessageObserverAdapter() {});
 		observers.add(new MessageObserverAdapter() {});
 		ping.addMessageObservers(observers);
@@ -82,7 +82,7 @@ public class MessageTest {
 	@Test
 	public void testMultipleAddListOfMessageObservers() {
 		Request ping = new Request(null, Type.CON);
-		List<MessageObserver> observers = new ArrayList<>();
+		List<MessageObserver> observers = new ArrayList<MessageObserver>();
 		observers.add(new MessageObserverAdapter() {});
 		observers.add(new MessageObserverAdapter() {});
 		ping.addMessageObservers(observers);
@@ -95,7 +95,7 @@ public class MessageTest {
 	@Test
 	public void testMultipleAddsToMessageObservers() {
 		Request ping = new Request(null, Type.CON);
-		List<MessageObserver> observers = new ArrayList<>();
+		List<MessageObserver> observers = new ArrayList<MessageObserver>();
 		observers.add(new MessageObserverAdapter() {});
 		observers.add(new MessageObserverAdapter() {});
 		ping.addMessageObservers(observers);

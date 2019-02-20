@@ -114,7 +114,7 @@ public class MapBasedEndpointContext extends AddressEndpointContext {
 		if (attributes == null) {
 			throw new NullPointerException("missing attributes map, must not be null!");
 		}
-		this.entries = Collections.unmodifiableMap(new HashMap<>(attributes));
+		this.entries = Collections.unmodifiableMap(new HashMap<String, String>(attributes));
 		this.hasCriticalEntries = findCriticalEntries(entries);
 	}
 
@@ -136,7 +136,7 @@ public class MapBasedEndpointContext extends AddressEndpointContext {
 		if ((attributes.length & 1) != 0) {
 			throw new IllegalArgumentException("number of attributes must be even, not " + attributes.length + "!");
 		}
-		Map<String, String> entries = new HashMap<>();
+		Map<String, String> entries = new HashMap<String, String>();
 		for (int index = 0; index < attributes.length; ++index) {
 			String key = attributes[index];
 			String value = attributes[++index];
@@ -208,7 +208,7 @@ public class MapBasedEndpointContext extends AddressEndpointContext {
 	 */
 	public static MapBasedEndpointContext addEntries(EndpointContext context, String... attributes) {
 		Map<String, String> additionalAttributes = createMap(attributes);
-		Map<String, String> entries = new HashMap<>(context.entries());
+		Map<String, String> entries = new HashMap<String, String>(context.entries());
 		entries.putAll(additionalAttributes);
 		return new MapBasedEndpointContext(context.getPeerAddress(), context.getVirtualHost(),
 				context.getPeerIdentity(), entries);

@@ -36,7 +36,7 @@ public class InMemoryRpkTrustStore implements TrustedRpkStore {
 	 * @param trustedRPKS the list of raw public key identities that are trusted
 	 */
 	public InMemoryRpkTrustStore(Set<RawPublicKeyIdentity> trustedRPKS) {
-		this.trustedRPKs = new HashSet<>();
+		this.trustedRPKs = new HashSet<RawPublicKeyIdentity>();
 		this.trustedRPKs.addAll(trustedRPKS);
 	}
 

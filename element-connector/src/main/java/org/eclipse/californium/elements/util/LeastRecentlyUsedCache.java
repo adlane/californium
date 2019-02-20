@@ -121,7 +121,7 @@ public class LeastRecentlyUsedCache<K, V> {
 	 */
 	private volatile boolean updateOnReadAccess = true;
 
-	private final List<EvictionListener<V>> evictionListeners = new LinkedList<>();
+	private final List<EvictionListener<V>> evictionListeners = new LinkedList<EvictionListener<V>>();
 
 	/**
 	 * Creates a cache with an initial capacity of
@@ -167,14 +167,14 @@ public class LeastRecentlyUsedCache<K, V> {
 			throw new IllegalArgumentException("initial capacity must be <= max capacity");
 		} else {
 			this.capacity = maxCapacity;
-			this.cache = new ConcurrentHashMap<>(initialCapacity);
+			this.cache = new ConcurrentHashMap<K, CacheEntry<K, V>>(initialCapacity);
 			setExpirationThreshold(threshold);
 			initLinkedList();
 		}
 	}
 
 	private void initLinkedList() {
-		header = new CacheEntry<>();
+		header = new CacheEntry<K, V>();
 		header.after = header.before = header;
 	}
 
@@ -397,7 +397,7 @@ public class LeastRecentlyUsedCache<K, V> {
 	}
 
 	private void add(K key, V value) {
-		CacheEntry<K, V> entry = new CacheEntry<>(key, value);
+		CacheEntry<K, V> entry = new CacheEntry<K, V>(key, value);
 		cache.put(key, entry);
 		entry.addBefore(header);
 	}

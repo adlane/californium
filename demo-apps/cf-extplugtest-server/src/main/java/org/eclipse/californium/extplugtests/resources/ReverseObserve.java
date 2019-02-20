@@ -173,7 +173,7 @@ public class ReverseObserve extends CoapResource implements NotificationListener
 	private void processPOST(IncomingExchange exchange) {
 		Request request = exchange.getRequest();
 
-		List<String> observeUriQuery = new ArrayList<>();
+		List<String> observeUriQuery = new ArrayList<String>();
 		List<String> uriQuery = request.getOptions().getUriQuery();
 		Integer observe = null;
 		String resource = null;

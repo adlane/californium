@@ -173,7 +173,7 @@ public class CoapServer implements ServerInterface {
 		root.add(wellKnown);
 
 		// endpoints
-		this.endpoints = new ArrayList<>();
+		this.endpoints = new ArrayList<Endpoint>();
 		// create endpoint for each port
 		if (ports != null) {
 			for (int port : ports) {

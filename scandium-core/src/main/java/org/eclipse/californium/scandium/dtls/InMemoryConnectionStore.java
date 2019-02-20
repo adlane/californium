@@ -146,11 +146,11 @@ public class InMemoryConnectionStore implements ResumptionSupportingConnectionSt
 	 *            and mark them to resume.
 	 */
 	public InMemoryConnectionStore(int capacity, long threshold, SessionCache sessionCache) {
-		this.connections = new LeastRecentlyUsedCache<>(capacity, threshold);
+		this.connections = new LeastRecentlyUsedCache<ConnectionId, Connection>(capacity, threshold);
 		this.connections.setEvictingOnReadAccess(false);
 		this.connections.setUpdatingOnReadAccess(false);
-		this.connectionsByEstablishedSession = new ConcurrentHashMap<>();
-		this.connectionsByAddress = new ConcurrentHashMap<>();
+		this.connectionsByEstablishedSession = new ConcurrentHashMap<SessionId, Connection>();
+		this.connectionsByAddress = new ConcurrentHashMap<InetSocketAddress, Connection>();
 		this.sessionCache = sessionCache;
 
 		if (sessionCache != null) {

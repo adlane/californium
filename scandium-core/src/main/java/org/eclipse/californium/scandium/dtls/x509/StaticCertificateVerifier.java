@@ -98,7 +98,7 @@ public class StaticCertificateVerifier implements CertificateVerifier {
 	}
 
 	private static Set<TrustAnchor> getTrustAnchors(X509Certificate[] trustedCertificates) {
-		Set<TrustAnchor> result = new HashSet<>();
+		Set<TrustAnchor> result = new HashSet<TrustAnchor>();
 		if (trustedCertificates != null) {
 			for (X509Certificate cert : trustedCertificates) {
 				result.add(new TrustAnchor((X509Certificate) cert, null));

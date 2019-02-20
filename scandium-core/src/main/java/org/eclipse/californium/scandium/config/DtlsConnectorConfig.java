@@ -1213,7 +1213,7 @@ public final class DtlsConnectorConfig {
 			if (cipherSuites == null) {
 				throw new NullPointerException("Connector must support at least one cipher suite");
 			}
-			List<CipherSuite> suites = new ArrayList<>(cipherSuites.length);
+			List<CipherSuite> suites = new ArrayList<CipherSuite>(cipherSuites.length);
 			for (int i = 0; i < cipherSuites.length; i++) {
 				CipherSuite knownSuite = CipherSuite.getTypeByName(cipherSuites[i]);
 				if (knownSuite != null) {
@@ -1314,7 +1314,7 @@ public final class DtlsConnectorConfig {
 			config.privateKey = privateKey;
 			config.publicKey = publicKey;
 			config.certChain = null;
-			config.identityCertificateTypes = new ArrayList<>(1);
+			config.identityCertificateTypes = new ArrayList<CertificateType>(1);
 			config.identityCertificateTypes.add(CertificateType.RAW_PUBLIC_KEY);
 			return this;
 		}
@@ -1424,7 +1424,7 @@ public final class DtlsConnectorConfig {
 			config.certChain = Arrays.asList(SslContextUtil.asX509Certificates(certificateChain));
 			config.publicKey = config.certChain.get(0).getPublicKey();
 			if (certificateTypes == null) {
-				config.identityCertificateTypes = new ArrayList<>(1);
+				config.identityCertificateTypes = new ArrayList<CertificateType>(1);
 				config.identityCertificateTypes.add(CertificateType.X_509);
 			} else {
 				config.identityCertificateTypes = certificateTypes;
@@ -2010,7 +2010,7 @@ public final class DtlsConnectorConfig {
 			}
 			if (config.trustCertificateTypes == null) {
 				if (config.trustedRPKs != null || config.certificateVerifier != null) {
-					config.trustCertificateTypes = new ArrayList<>(2);
+					config.trustCertificateTypes = new ArrayList<CertificateType>(2);
 					if (config.trustedRPKs != null) {
 						config.trustCertificateTypes.add(CertificateType.RAW_PUBLIC_KEY);
 					}
@@ -2146,7 +2146,7 @@ public final class DtlsConnectorConfig {
 		private void determineCipherSuitesFromConfig() {
 			// user has not explicitly set cipher suites
 			// try to guess his intentions from properties he has set
-			List<CipherSuite> ciphers = new ArrayList<>();
+			List<CipherSuite> ciphers = new ArrayList<CipherSuite>();
 			boolean certificates = isConfiguredWithKeyPair() || config.trustCertificateTypes != null;
 			if (certificates) {
 				// currently only ECDSA is supported!

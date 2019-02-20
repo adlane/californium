@@ -115,7 +115,7 @@ public class ExtendedTestServer extends AbstractTestServer {
 		NetworkConfig udpConfig = new NetworkConfig(config);
 		udpConfig.setInt(Keys.MAX_MESSAGE_SIZE, 64);
 		udpConfig.setInt(Keys.PREFERRED_BLOCK_SIZE, 64);
-		Map<Select, NetworkConfig> protocolConfig = new HashMap<>();
+		Map<Select, NetworkConfig> protocolConfig = new HashMap<Select, NetworkConfig>();
 		protocolConfig.put(new Select(Protocol.UDP, InterfaceType.EXTERNAL), udpConfig);
 
 		// create server
