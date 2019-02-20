@@ -91,7 +91,9 @@ public class ExampleDTLSClient {
 				}
 			});
 
-		} catch (GeneralSecurityException | IOException e) {
+		} catch (GeneralSecurityException e) {
+			LOG.error("Could not load the keystore", e);
+		} catch (IOException e) {
 			LOG.error("Could not load the keystore", e);
 		}
 	}

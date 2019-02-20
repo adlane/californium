@@ -69,7 +69,9 @@ public class ExampleDTLSServer {
 			dtlsConnector
 					.setRawDataReceiver(new RawDataChannelImpl(dtlsConnector));
 
-		} catch (GeneralSecurityException | IOException e) {
+		} catch (GeneralSecurityException e) {
+			LOG.error("Could not load the keystore", e);
+		} catch (IOException e) {
 			LOG.error("Could not load the keystore", e);
 		}
 	}
