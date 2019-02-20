@@ -217,7 +217,9 @@ public class SimpleFileServer extends AbstractTestServer {
 				exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR);
 				return;
 			}
-			try (InputStream in = new FileInputStream(file)) {
+			InputStream in = null;
+      try {
+        in = new FileInputStream(file);
 				byte[] content = new byte[(int) length];
 				int r = in.read(content);
 				if (length == r) {
@@ -233,6 +235,14 @@ public class SimpleFileServer extends AbstractTestServer {
 			} catch (IOException ex) {
 				LOG.warn("File {}:", file.getAbsolutePath(), ex);
 				exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR);
+      } finally {
+        if (in != null) {
+          try {
+            in.close();
+          } catch (IOException ex) {
+            LOG.warn("File {}:", file.getAbsolutePath(), ex);
+          }
+        }
 			}
 		}
 

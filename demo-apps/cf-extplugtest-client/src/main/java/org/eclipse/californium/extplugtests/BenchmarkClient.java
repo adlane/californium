@@ -924,7 +924,9 @@ public class BenchmarkClient {
 	}
 
 	private static String formatRetransmissions(long retransmissions, long requests) {
-		try (Formatter formatter = new Formatter()) {
+		Formatter formatter = null;
+		try {
+      formatter = new Formatter();
 			if (requests > 0) {
 				return formatter
 						.format("%d retransmissions (%4.2f%%)", retransmissions, ((retransmissions * 100D) / requests))
@@ -933,11 +935,17 @@ public class BenchmarkClient {
 				return formatter.format("%d retransmissions (no response-messages received!)", retransmissions)
 						.toString();
 			}
-		}
+    } finally {
+      if (formatter != null) {
+        formatter.close();
+      }
+    }
 	}
 
 	private static String formatTransmissionErrors(long transmissionErrors, long requests) {
-		try (Formatter formatter = new Formatter()) {
+		Formatter formatter = null;
+		try {
+		  formatter = new Formatter();
 			if (requests > 0) {
 				return formatter.format("%d transmission errors (%4.2f%%)", transmissionErrors,
 						((transmissionErrors * 100D) / requests)).toString();
@@ -945,26 +953,42 @@ public class BenchmarkClient {
 				return formatter.format("%d transmission errors (no response-messages received!)", transmissionErrors)
 						.toString();
 			}
+    } finally {
+      if (formatter != null) {
+        formatter.close();
+      }
 		}
 	}
 
 	private static String formatPerSecond(String units, long requests, long nanos) {
 		long millis = TimeUnit.NANOSECONDS.toMillis(nanos);
 		if (millis > 0) {
-			try (Formatter formatter = new Formatter()) {
+		  Formatter formatter = null;
+      try {
+        formatter = new Formatter();
 				return formatter.format(", %d %s/s", (requests * 1000) / millis, units).toString();
+      } finally {
+        if (formatter != null) {
+          formatter.close();
+        }
 			}
 		}
 		return "";
 	}
 
 	private static String formatClientRequests(int statistic[], int index, int last) {
-		try (Formatter formatter = new Formatter()) {
-			formatter.format("%3d clients with %d", (index - last), statistic[last]);
+    Formatter formatter = null;
+    try {
+      formatter = new Formatter();
+      formatter.format("%3d clients with %d", (index - last), statistic[last]);
 			if (statistic[index - 1] != statistic[last]) {
 				formatter.format(" to %d", statistic[index - 1]);
 			}
 			return formatter.format(" requests.").toString();
-		}
+    } finally {
+      if (formatter != null) {
+        formatter.close();
+      }
+    }
 	}
 }
