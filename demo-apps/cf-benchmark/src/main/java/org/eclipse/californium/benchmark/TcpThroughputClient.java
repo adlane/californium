@@ -54,7 +54,6 @@ public class TcpThroughputClient {
 			Random random = new Random(0);
 			long messages = 200_000;
 			long total = 0;
-
 			long start = System.nanoTime();
 			for (int i = 0; i < messages; i++) {
 				byte data[] = new byte[random.nextInt(1024 * 2)];
