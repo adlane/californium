@@ -95,12 +95,12 @@ public class CredentialsUtil {
 	public static List<Mode> parse(String[] args, List<Mode> defaults, List<Mode> supported) {
 		List<Mode> modes;
 		if (args.length == 0) {
-			modes = new ArrayList<>();
+			modes = new ArrayList<Mode>();
 			if (defaults != null) {
 				modes.addAll(defaults);
 			}
 		} else {
-			modes = new ArrayList<>(args.length);
+			modes = new ArrayList<Mode>(args.length);
 			for (String mode : args) {
 				try {
 					modes.add(Mode.valueOf(mode));

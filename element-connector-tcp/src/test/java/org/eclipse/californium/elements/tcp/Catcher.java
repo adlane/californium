@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Catcher implements RawDataChannel {
 
-	private final List<RawData> messages = new ArrayList<>();
+	private final List<RawData> messages = new ArrayList<RawData>();
 	private final Object lock = new Object();
 
 	@Override

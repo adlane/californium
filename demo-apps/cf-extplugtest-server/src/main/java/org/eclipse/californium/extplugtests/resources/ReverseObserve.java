@@ -175,7 +175,7 @@ public class ReverseObserve extends CoapResource implements NotificationListener
 			return;
 		}
 
-		List<String> observeUriQuery = new ArrayList<>();
+		List<String> observeUriQuery = new ArrayList<String>();
 		List<String> uriQuery = request.getOptions().getUriQuery();
 		Integer observe = null;
 		String resource = null;

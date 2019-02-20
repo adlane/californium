@@ -82,7 +82,7 @@ public final class SweepDeduplicator implements Deduplicator {
 	}
 	
 	/** The hash map with all incoming messages. */
-	private final ConcurrentMap<KeyMID, DedupExchange> incomingMessages = new ConcurrentHashMap<>();
+	private final ConcurrentMap<KeyMID, DedupExchange> incomingMessages = new ConcurrentHashMap<KeyMID, DedupExchange>();
 	private final SweepAlgorithm algorithm;
 	private ScheduledExecutorService scheduler;
 	private boolean running = false;

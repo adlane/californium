@@ -30,11 +30,11 @@ public class InMemoryClientSessionCache implements ClientSessionCache {
 	/**
 	 * Session by peer.
 	 */
-	private final Map<InetSocketAddress, ClientSession> connectionTickets = new ConcurrentHashMap<>();
+	private final Map<InetSocketAddress, ClientSession> connectionTickets = new ConcurrentHashMap<InetSocketAddress, ClientSession>();
 	/**
 	 * Session by id.
 	 */
-	private final Map<SessionId, ClientSession> sessionTickets = new ConcurrentHashMap<>();
+	private final Map<SessionId, ClientSession> sessionTickets = new ConcurrentHashMap<SessionId, ClientSession>();
 
 	@Override
 	public String toString() {

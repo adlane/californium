@@ -535,7 +535,7 @@ public class BenchmarkClient {
 		overallRequestsDownCounter = new CountDownLatch(overallRequests);
 		overallNotifiesDownCounter = new CountDownLatch(overallNotifies);
 
-		List<BenchmarkClient> clientList = new ArrayList<>(clients);
+		List<BenchmarkClient> clientList = new ArrayList<BenchmarkClient>(clients);
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(),
 				new DaemonThreadFactory("Aux#"));
 

@@ -1106,7 +1106,7 @@ public final class DtlsConnectorConfig {
 		private void determineCipherSuitesFromConfig() {
 			// user has not explicitly set cipher suites
 			// try to guess his intentions from properties he has set
-			List<CipherSuite> ciphers = new ArrayList<>();
+			List<CipherSuite> ciphers = new ArrayList<CipherSuite>();
 			boolean certificates = isConfiguredWithKeyPair();
 			if (!certificates && clientOnly) {
 				certificates = config.trustedRPKs != null || (config.certificateVerifier != null);

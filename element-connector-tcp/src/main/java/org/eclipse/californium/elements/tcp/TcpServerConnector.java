@@ -65,7 +65,7 @@ public class TcpServerConnector implements Connector {
 	private final int numberOfThreads;
 	private final int connectionIdleTimeoutSeconds;
 	private final TcpContextUtil contextUtil;
-	private final ConcurrentMap<SocketAddress, Channel> activeChannels = new ConcurrentHashMap<>();
+	private final ConcurrentMap<SocketAddress, Channel> activeChannels = new ConcurrentHashMap<SocketAddress, Channel>();
 
 	/**
 	 * Endpoint context matcher for outgoing messages.

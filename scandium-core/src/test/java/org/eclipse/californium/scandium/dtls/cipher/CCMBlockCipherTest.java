@@ -57,7 +57,7 @@ public class CCMBlockCipherTest {
 	public static List<Object[]> parameters() {
 		// Trying different messages size to hit sharp corners in Coap-over-TCP
 		// spec
-		List<Object[]> parameters = new ArrayList<>();
+		List<Object[]> parameters = new ArrayList<Object[]>();
 		parameters.add(new Object[] { 0, 0, 7 });
 		parameters.add(new Object[] { 5, 0, 7 });
 		parameters.add(new Object[] { 13, 1, 7 });

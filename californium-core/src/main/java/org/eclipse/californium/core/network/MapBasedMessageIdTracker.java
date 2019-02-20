@@ -62,7 +62,7 @@ public class MapBasedMessageIdTracker implements MessageIdTracker {
 	public MapBasedMessageIdTracker(int initialMid, NetworkConfig config) {
 		exchangeLifetimeNanos = TimeUnit.MILLISECONDS.toNanos(config.getLong(NetworkConfig.Keys.EXCHANGE_LIFETIME));
 		counter = initialMid;
-		messageIds = new HashMap<>(TOTAL_NO_OF_MIDS);
+		messageIds = new HashMap<Integer, Long>(TOTAL_NO_OF_MIDS);
 	}
 
 	/**

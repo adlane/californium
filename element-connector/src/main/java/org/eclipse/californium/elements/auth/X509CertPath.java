@@ -110,7 +110,7 @@ public class X509CertPath implements Principal {
 		if (certificateChain == null) {
 			throw new NullPointerException("Certificate chain must not be null!");
 		}
-		List<X509Certificate> certificates = new ArrayList<>();
+		List<X509Certificate> certificates = new ArrayList<X509Certificate>();
 		X500Principal issuer = null;
 		try {
 			int index = 0;

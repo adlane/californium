@@ -127,7 +127,65 @@ public class MapBasedEndpointContext extends AddressEndpointContext {
 		if (attributes == null) {
 			throw new NullPointerException("missing attributes map, must not be null!");
 		}
-		this.entries = Collections.unmodifiableMap(new HashMap<>(attributes));
+		this.entries = Collections.unmodifiableMap(new HashMap<String, String>(attributes));
+		this.hasCriticalEntries = findCriticalEntries(entries);
+	}
+
+	/**
+	 * Create map of attributes.
+	 * 
+	 * @param attributes list of attributes (key/value pairs, e.g. key_1,
+	 *            value_1, key_2, value_2 ...)
+	 * @return create map
+	 * @throws NullPointerException if the provided attributes is {@code null},
+	 *             or one of the attributes is {@code null}.
+	 * @throws IllegalArgumentException if provided attributes list has odd size
+	 *             or contains a duplicate key.
+	 */
+	private static final Map<String, String> createMap(String... attributes) {
+		if (attributes == null) {
+			throw new NullPointerException("attributes must not null!");
+		}
+		if ((attributes.length & 1) != 0) {
+			throw new IllegalArgumentException("number of attributes must be even, not " + attributes.length + "!");
+		}
+		Map<String, String> entries = new HashMap<String, String>();
+		for (int index = 0; index < attributes.length; ++index) {
+			String key = attributes[index];
+			String value = attributes[++index];
+			if (null == key) {
+				throw new NullPointerException((index / 2) + ". key is null");
+			} else if (key.isEmpty()) {
+				throw new IllegalArgumentException((index / 2) + ". key is empty");
+			} else if (null == value) {
+				throw new NullPointerException((index / 2) + ". value is null");
+			}
+			String old = entries.put(key, value);
+			if (null != old) {
+				throw new IllegalArgumentException((index / 2) + ". key '" + key + "' is provided twice");
+			}
+		}
+		return entries;
+	}
+
+	/**
+	 * Check, if at least one critical attribute is contained in the provided
+	 * map.
+	 * 
+	 * Use {@link #KEY_PREFIX_NONE_CRITICAL} to distinguish the critical from
+	 * the none critical attributes.
+	 * 
+	 * @param attributes map of attributes
+	 * @return {@code true}, if at least one critical attribute is contained.
+	 */
+	private static final boolean findCriticalEntries(Map<String, String> attributes) {
+		for (String key : attributes.keySet()) {
+			if (!key.startsWith(KEY_PREFIX_NONE_CRITICAL)) {
+				return true;
+			}
+		}
+		return false;
+>>>>>>> 07825841... diamond operator is not supported with java6.
 	}
 
 	@Override

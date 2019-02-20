@@ -58,10 +58,11 @@ public class HashMapCtxDB implements OSCoreCtxDB {
 			throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
 		}
 
-		this.tokenMap = new HashMap<>();
-		this.ridMap = new HashMap<>();
-		this.uriMap = new HashMap<>();
-		this.seqMap = new HashMap<>();
+		this.tokenMap = new HashMap<Token, OSCoreCtx>();
+		this.ridMap = new HashMap<ByteId, OSCoreCtx>();
+		this.uriMap = new HashMap<String, OSCoreCtx>();
+		this.seqMap = new HashMap<Token, Integer>();
+
 		this.allTokens = new ArrayList<Token>();
 	}
 

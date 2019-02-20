@@ -65,7 +65,7 @@ public class ProxyHttpClientResource extends ForwardingResource {
 
 	@Override
 	public CompletableFuture<Response> forwardRequest(Request request) {
-		final CompletableFuture<Response> future = new CompletableFuture<>();
+		final CompletableFuture<Response> future = new CompletableFuture<Response>();
 		final Request incomingCoapRequest = request;
 		
 		// check the invariant: the request must have the proxy-uri set

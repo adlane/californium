@@ -126,7 +126,7 @@ public final class InMemoryConnectionStore implements ResumptionSupportingConnec
 	 *                     connection from the cache and mark them to resume. 
 	 */
 	public InMemoryConnectionStore(final int capacity, final long threshold, final SessionCache sessionCache) {
-		connections = new LeastRecentlyUsedCache<>(capacity, threshold);
+		connections = new LeastRecentlyUsedCache<InetSocketAddress, Connection>(capacity, threshold);
 		connections.setEvictingOnReadAccess(false);
 		connections.setUpdatingOnReadAccess(false);
 		this.sessionCache = sessionCache;

@@ -126,7 +126,7 @@ public class ServerHandshakerTest {
 	public void testReceiveClientHelloProcessesMaxFragmentLengthExtension() throws Exception {
 		// given a server bound to a network interface on an ethernet (MTU 1500 bytes)
 		// and a constrained client that can only handle fragments of max 512 bytes
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		extensions.add(DtlsTestTools.newMaxFragmentLengthExtension(1)); // code 1 = 512 bytes
 
 		// when the client sends its CLIENT_HELLO message
@@ -154,7 +154,7 @@ public class ServerHandshakerTest {
 	public void testReceiveClientHelloProcessesServerNameExtension() throws Exception {
 
 		// GIVEN a client indicating a host name in its CLIENT_HELLO
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		extensions.add(DtlsTestTools.newServerNameExtension("iot.eclipse.org"));
 
 		// WHEN the client sends its CLIENT_HELLO message
@@ -170,7 +170,7 @@ public class ServerHandshakerTest {
 	@Test
 	public void testReceiveClientHelloIncludesUnknownCiphersInHandshakeHashGeneration() throws HandshakeException {
 
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		extensions.add(DtlsTestTools.newSupportedEllipticCurvesExtension(getArbitrarySupportedGroup().getId()));
 
 		processClientHello(0, extensions);
@@ -225,7 +225,7 @@ public class ServerHandshakerTest {
 		// supported by the server
 		supportedClientCiphers = new byte[]{(byte) 0xC0, (byte) 0xAE, // TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8
 																				(byte) 0xC0, (byte) 0xA8};// TLS_PSK_WITH_AES_128_CCM_8
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		SupportedGroup supportedGroup = getArbitrarySupportedGroup();
 		extensions.add(DtlsTestTools.newSupportedEllipticCurvesExtension(supportedGroup.getId()));
 
@@ -240,7 +240,7 @@ public class ServerHandshakerTest {
 	@Test
 	public void testReceiveClientHelloAbortsOnUnknownClientCertificateType() throws HandshakeException {
 
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// certificate type 0x05 is not defined by IANA
 		extensions.add(DtlsTestTools.newClientCertificateTypesExtension(0x05));
 
@@ -255,7 +255,7 @@ public class ServerHandshakerTest {
 
 	@Test
 	public void testReceiveClientHelloAbortsOnNonMatchingClientCertificateTypes() {
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// certificate type OpenPGP is not supported by Scandium
 		extensions.add(DtlsTestTools.newClientCertificateTypesExtension(
 				CertificateType.OPEN_PGP.getCode()));
@@ -273,7 +273,7 @@ public class ServerHandshakerTest {
 	@Test
 	public void testReceiveClientHelloNegotiatesSupportedCertificateType() throws Exception {
 
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		extensions.add(DtlsTestTools.newSupportedEllipticCurvesExtension(getArbitrarySupportedGroup().getId()));
 		// certificate type OpenPGP is not supported
 		// certificate type X.509 is supported
@@ -288,7 +288,7 @@ public class ServerHandshakerTest {
 
 	@Test
 	public void testReceiveClientHelloAbortsOnUnknownServerCertificateType() throws HandshakeException {
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// certificate type 0x05 is not defined by IANA
 		extensions.add(DtlsTestTools.newServerCertificateTypesExtension(0x05));
 
@@ -305,7 +305,7 @@ public class ServerHandshakerTest {
 	@Test
 	public void testReceiveClientHelloAbortsOnUnsupportedEcCurveIds() throws HandshakeException {
 
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// curveId 0x0000 is not assigned by IANA
 		extensions.add(DtlsTestTools.newSupportedEllipticCurvesExtension(0x0000));
 		try {
@@ -320,7 +320,7 @@ public class ServerHandshakerTest {
 	@Test()
 	public void testReceiveClientHelloNegotiatesSupportedEcCurveId() throws HandshakeException {
 
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		SupportedGroup supportedGroup = getArbitrarySupportedGroup();
 		// curveId 0x0000 is not assigned by IANA
 		extensions.add(DtlsTestTools.newSupportedEllipticCurvesExtension(0x0000, supportedGroup.getId()));

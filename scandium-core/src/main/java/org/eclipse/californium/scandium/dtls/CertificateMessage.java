@@ -292,7 +292,7 @@ public final class CertificateMessage extends HandshakeMessage {
 
 		LOGGER.debug("Parsing X.509 CERTIFICATE message");
 		int certificateChainLength = reader.read(CERTIFICATE_LIST_LENGTH);
-		List<Certificate> certs = new ArrayList<>();
+		List<Certificate> certs = new ArrayList<Certificate>();
 
 		try {
 			CertificateFactory factory = CertificateFactory.getInstance(CERTIFICATE_TYPE_X509);

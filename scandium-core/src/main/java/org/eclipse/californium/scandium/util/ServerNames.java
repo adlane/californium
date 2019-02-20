@@ -29,7 +29,7 @@ public final class ServerNames implements Iterable<ServerName> {
 	int encodedLength; // overall length
 
 	private ServerNames() {
-		names = new HashSet<>();
+		names = new HashSet<ServerName>();
 	}
 
 	private ServerNames(final ServerName serverName) {

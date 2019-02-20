@@ -42,8 +42,8 @@ public class InMemoryPskStore implements PskStore {
 
 	private static final ServerName GLOBAL_SCOPE = ServerName.from(NameType.UNDEFINED, new byte[0]);
 
-	private final Map<ServerName, Map<String, byte[]>> scopedKeys = new ConcurrentHashMap<>();
-	private final Map<InetSocketAddress, Map<ServerName, String>> scopedIdentities = new ConcurrentHashMap<>();
+	private final Map<ServerName, Map<String, byte[]>> scopedKeys = new ConcurrentHashMap<ServerName, Map<String, byte[]>>();
+	private final Map<InetSocketAddress, Map<ServerName, String>> scopedIdentities = new ConcurrentHashMap<InetSocketAddress, Map<ServerName, String>>();
 
 	@Override
 	public byte[] getKey(final String identity) {
@@ -139,7 +139,7 @@ public class InMemoryPskStore implements PskStore {
 			synchronized (scopedKeys) {
 				Map<String, byte[]> keysForServerName = scopedKeys.get(virtualHost);
 				if (keysForServerName == null) {
-					keysForServerName = new ConcurrentHashMap<>();
+					keysForServerName = new ConcurrentHashMap<String, byte[]>();
 					scopedKeys.put(virtualHost, keysForServerName);
 				}
 				keysForServerName.put(identity, Arrays.copyOf(key, key.length));
@@ -193,7 +193,7 @@ public class InMemoryPskStore implements PskStore {
 			synchronized (scopedKeys) {
 				Map<ServerName, String> identities = scopedIdentities.get(peerAddress);
 				if (identities == null) {
-					identities = new ConcurrentHashMap<>();
+					identities = new ConcurrentHashMap<ServerName, String>();
 					scopedIdentities.put(peerAddress, identities);
 				}
 				identities.put(virtualHost, identity);

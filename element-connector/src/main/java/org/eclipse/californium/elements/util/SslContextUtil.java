@@ -142,14 +142,14 @@ public class SslContextUtil {
 	 * @see #configure(String, String)
 	 * @see #getKeyStoreTypeFromUri(String)
 	 */
-	private static final Map<String, String> KEY_STORE_TYPES = new ConcurrentHashMap<>();
+	private static final Map<String, String> KEY_STORE_TYPES = new ConcurrentHashMap<String, String>();
 	/**
 	 * Map URI scheme to input stream factories.
 	 * 
 	 * @see #configure(String, InputStreamFactory)
 	 * @see #getInputStreamFactoryFromUri(String)
 	 */
-	private static final Map<String, InputStreamFactory> INPUT_STREAM_FACTORIES = new ConcurrentHashMap<>();
+	private static final Map<String, InputStreamFactory> INPUT_STREAM_FACTORIES = new ConcurrentHashMap<String, InputStreamFactory>();
 
 	static {
 		configureDefaults();

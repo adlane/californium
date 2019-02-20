@@ -96,7 +96,7 @@ public class InMemoryMessageIdProvider implements MessageIdProvider {
 			random = null;
 		}
 		// 10 minutes
-		trackers = new LeastRecentlyUsedCache<>(config.getInt(NetworkConfig.Keys.MAX_ACTIVE_PEERS, 150000),
+		trackers = new LeastRecentlyUsedCache<InetSocketAddress, MessageIdTracker>(config.getInt(NetworkConfig.Keys.MAX_ACTIVE_PEERS, 150000),
 				config.getLong(NetworkConfig.Keys.MAX_PEER_INACTIVITY_PERIOD, 10 * 60));
 		trackers.setEvictingOnReadAccess(false);
 	}

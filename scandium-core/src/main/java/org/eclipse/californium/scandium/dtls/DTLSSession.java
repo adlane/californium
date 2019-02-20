@@ -145,7 +145,7 @@ public final class DTLSSession {
 	/**
 	 * The next record sequence number per epoch.
 	 */
-	private Map<Integer, Long> sequenceNumbers = new HashMap<>();
+	private Map<Integer, Long> sequenceNumbers = new HashMap<Integer, Long>();
 
 	/**
 	 * Indicates the type of certificate to send to the peer in a CERTIFICATE message.

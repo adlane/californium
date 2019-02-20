@@ -50,7 +50,7 @@ public class TlsCorrelationTest {
 
 	@Rule
 	public final Timeout timeout = new Timeout(10, TimeUnit.SECONDS);
-	private final List<Connector> cleanup = new ArrayList<>();
+	private final List<Connector> cleanup = new ArrayList<Connector>();
 
 	@BeforeClass
 	public static void initializeSsl() throws Exception {

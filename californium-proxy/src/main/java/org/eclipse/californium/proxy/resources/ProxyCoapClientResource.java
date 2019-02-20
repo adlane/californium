@@ -52,7 +52,7 @@ public class ProxyCoapClientResource extends ForwardingResource {
 
 	@Override
 	public CompletableFuture<Response> forwardRequest(Request incomingRequest) {
-		final CompletableFuture<Response> future = new CompletableFuture<>();
+		final CompletableFuture<Response> future = new CompletableFuture<Response>();
 
 		LOGGER.info("ProxyCoapClientResource forwards {}", incomingRequest);
 

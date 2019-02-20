@@ -160,7 +160,7 @@ public class CoapServer implements ServerInterface {
 		root.add(wellKnown);
 		
 		// endpoints
-		this.endpoints = new ArrayList<>();
+		this.endpoints = new ArrayList<Endpoint>();
 		// sets the central thread pool for the protocol stage over all endpoints
 		this.executor = Executors.newScheduledThreadPool(//
 				this.config.getInt(NetworkConfig.Keys.PROTOCOL_STAGE_THREAD_COUNT), //
