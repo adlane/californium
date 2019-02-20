@@ -658,7 +658,7 @@ public abstract class Handshaker {
 
 	private List<Record> wrapHandshakeMessage(HandshakeMessage handshakeMessage) throws GeneralSecurityException {
 		setSequenceNumber(handshakeMessage);
-		List<Record> result = new ArrayList<>();
+		List<Record> result = new ArrayList<Record>();
 		byte[] messageBytes = handshakeMessage.fragmentToByteArray();
 
 		if (messageBytes.length <= session.getMaxFragmentLength()) {

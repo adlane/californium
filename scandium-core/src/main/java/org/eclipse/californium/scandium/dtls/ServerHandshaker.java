@@ -217,8 +217,8 @@ public class ServerHandshaker extends Handshaker {
 		this.sniEnabled = config.isSniEnabled();
 		this.clientAuthenticationRequired = config.isClientAuthenticationRequired();
 
-		this.supportedClientCertificateTypes = new ArrayList<>();
-		this.supportedServerCertificateTypes = new ArrayList<>();
+		this.supportedClientCertificateTypes = new ArrayList<CertificateType>();
+		this.supportedServerCertificateTypes = new ArrayList<CertificateType>();
 		
 		// we only need to include certificate_type extensions in the SERVER_HELLO
 		// if we support a cipher suite that requires a certificate exchange

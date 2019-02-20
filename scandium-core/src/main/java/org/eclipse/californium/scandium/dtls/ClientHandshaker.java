@@ -166,8 +166,8 @@ public class ClientHandshaker extends Handshaker {
 		this.preferredCipherSuites = Arrays.asList(config.getSupportedCipherSuites());
 		this.maxFragmentLengthCode = config.getMaxFragmentLengthCode();
 		this.sniEnabled = config.isSniEnabled();
-		this.supportedServerCertificateTypes = new ArrayList<>();
-		this.supportedClientCertificateTypes = new ArrayList<>();
+		this.supportedServerCertificateTypes = new ArrayList<CertificateType>();
+		this.supportedClientCertificateTypes = new ArrayList<CertificateType>();
 
 		// we only need to include certificate_type extensions in the CLIENT_HELLO
 		// if we support a cipher suite that requires a certificate exchange

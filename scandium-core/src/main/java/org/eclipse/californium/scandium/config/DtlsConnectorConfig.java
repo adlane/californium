@@ -870,7 +870,7 @@ public final class DtlsConnectorConfig {
 		}
 
 		private static X509Certificate[] toX509Certificates(Certificate[] certs) {
-			List<X509Certificate> result = new ArrayList<>(certs.length);
+			List<X509Certificate> result = new ArrayList<X509Certificate>(certs.length);
 			for (Certificate cert : certs) {
 				if (X509Certificate.class.isInstance(cert)) {
 					result.add((X509Certificate) cert);

@@ -65,7 +65,7 @@ public class StripedExecutorService extends AbstractExecutorService {
      * in order to avoid a memory leak.
      */
     private final Map<Object, SerialExecutor> executors =
-            new HashMap<>();
+            new HashMap<Object, SerialExecutor>();
 
     /**
      * The default submit() method creates a new FutureTask and
@@ -76,7 +76,7 @@ public class StripedExecutorService extends AbstractExecutorService {
      * remove the thread local entry.
      */
     private final static ThreadLocal<Object> stripes =
-            new ThreadLocal<>();
+            new ThreadLocal<Object>();
 
     /**
      * Valid states are RUNNING and SHUTDOWN.  We rely on the
@@ -289,7 +289,7 @@ public class StripedExecutorService extends AbstractExecutorService {
         lock.lock();
         try {
             shutdown();
-            List<Runnable> result = new ArrayList<>();
+            List<Runnable> result = new ArrayList<Runnable>();
             for (Runnable job : executor.shutdownNow()) {
                 if (job instanceof SerialJob) {
                     // unwrap serial jobs 
@@ -420,7 +420,7 @@ public class StripedExecutorService extends AbstractExecutorService {
          * The queue of unexecuted tasks.
          */
         private final BlockingQueue<SerialJob> tasks =
-                new LinkedBlockingQueue<>();
+                new LinkedBlockingQueue<SerialJob>();
         /**
          * The runnable that we are currently busy with.
          */
