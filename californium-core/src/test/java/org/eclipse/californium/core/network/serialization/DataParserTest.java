@@ -95,8 +95,8 @@ import org.junit.runners.Parameterized;
 	@Test public void testParseMessageDetectsIllegalCodeClass() {
 		// GIVEN a message with a class code of 1, i.e. not a request
 		byte[] malformedRequest = new byte[] { 
-				0b01000000, // ver 1, CON, token length: 0
-				0b00100001, // code: 1.01 -> class 1 is reserved
+				0x40, // ver 1, CON, token length: 0
+				0x21, // code: 1.01 -> class 1 is reserved
 				0x00, 0x10 // message ID
 		};
 
@@ -114,8 +114,8 @@ import org.junit.runners.Parameterized;
 	@Test public void testParseMessageDetectsIllegalCode() {
 		// GIVEN a message with a class code of 0.07, i.e. not a request
 		byte[] malformedRequest = new byte[] { 
-				0b01000000, // ver 1, CON, token length: 0
-				0b00000111, // code: 0.07 -> class 1 is reserved
+				0x40, // ver 1, CON, token length: 0
+				0x07, // code: 0.07 -> class 1 is reserved
 				0x00, 0x10 // message ID
 		};
 
@@ -133,8 +133,8 @@ import org.junit.runners.Parameterized;
 	@Test public void testParseMessageDetectsMalformedOption() {
 		// GIVEN a request with an option value shorter than specified
 		byte[] malformedGetRequest = new byte[] { 
-				0b01000000, // ver 1, CON, token length: 0
-				0b00000001, // code: 0.01 (GET request)
+				0x40, // ver 1, CON, token length: 0
+				0x01, // code: 0.01 (GET request)
 				0x00, 0x10, // message ID
 				0x24, // option number 2, length: 4
 				0x01, 0x02, 0x03 // token value is one byte short
@@ -146,7 +146,7 @@ import org.junit.runners.Parameterized;
 			fail("Parser should have detected malformed options");
 		} catch (CoAPMessageFormatException e) {
 			// THEN an exception is thrown by the parser
-			assertEquals(0b00000001, e.getCode());
+			assertEquals(0x01, e.getCode());
 			assertEquals(true, e.isConfirmable());
 		}
 	}
@@ -154,8 +154,8 @@ import org.junit.runners.Parameterized;
 	@Test public void testParseMessageDetectsMissingPayload() {
 		// GIVEN a request with a payload delimiter but empty payload
 		byte[] malformedGetRequest = new byte[] { 
-				0b01000000, // ver 1, CON, token length: 0
-				0b00000001, // code: 0.01 (GET request)
+				0x40, // ver 1, CON, token length: 0
+				0x01, // code: 0.01 (GET request)
 				0x00, 0x10, // message ID
 				(byte) 0xFF // payload marker
 		};
@@ -166,7 +166,7 @@ import org.junit.runners.Parameterized;
 			fail("Parser should have detected missing payload");
 		} catch (CoAPMessageFormatException e) {
 			// THEN an exception is thrown by the parser
-			assertEquals(0b00000001, e.getCode());
+			assertEquals(0x01, e.getCode());
 			assertEquals(true, e.isConfirmable());
 		}
 	}
