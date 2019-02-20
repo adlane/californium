@@ -55,11 +55,21 @@ public class GETClient {
 				System.out.println(response.getCode());
 				System.out.println(response.getOptions());
 				if (args.length > 1) {
-					try (FileOutputStream out = new FileOutputStream(args[1])) {
-						out.write(response.getPayload());
+					FileOutputStream out = null;
+					try {
+            out = new FileOutputStream(args[1]);
+            out.write(response.getPayload());
 					} catch (IOException e) {
 						e.printStackTrace();
-					}
+          } finally {
+            if (out != null) {
+              try {
+                out.close();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+            }
+          }
 				} else {
 					System.out.println(response.getResponseText());
 					
