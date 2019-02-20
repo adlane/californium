@@ -113,7 +113,7 @@ public class DataParserTest {
 			parser.parseMessage(malformedRequest);
 			fail("Parser should have detected that message is not a request");
 		} catch (CoAPMessageFormatException e) {
-			assertEquals(0b00100001, e.getCode());
+			assertEquals(0x21, e.getCode());
 			assertEquals(true, e.isConfirmable());
 			// THEN an exception is thrown by the parser
 		}
