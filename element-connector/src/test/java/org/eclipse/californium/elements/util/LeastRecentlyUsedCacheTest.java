@@ -283,7 +283,7 @@ public class LeastRecentlyUsedCacheTest {
 	 * @param noOfEntries
 	 */
 	private void givenACacheWithEntries(int capacity, long expirationThresholdMillis, int noOfEntries) {
-		cache = new LeastRecentlyUsedCache<>(capacity, 0);
+		cache = new LeastRecentlyUsedCache<Integer, String>(capacity, 0);
 		cache.setExpirationThreshold(expirationThresholdMillis, TimeUnit.MILLISECONDS);
 		for (int i = 0; i < noOfEntries; i++) {
 			cache.put(i, Integer.toString(i));

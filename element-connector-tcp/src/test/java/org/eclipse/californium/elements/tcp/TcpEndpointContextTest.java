@@ -67,7 +67,7 @@ public class TcpEndpointContextTest {
 	@Rule
 	public TestNameLoggerRule names = new TestNameLoggerRule();
 
-	private final List<Connector> cleanup = new ArrayList<>();
+	private final List<Connector> cleanup = new ArrayList<Connector>();
 
 	@After
 	public void cleanup() {
@@ -422,7 +422,7 @@ public class TcpEndpointContextTest {
 	@Test
 	public void testSingleClientManyServersEndpointContext() throws Exception {
 		int serverCount = 3;
-		Map<InetSocketAddress, Catcher> servers = new IdentityHashMap<>();
+		Map<InetSocketAddress, Catcher> servers = new IdentityHashMap<InetSocketAddress, Catcher>();
 		for (int i = 0; i < serverCount; i++) {
 			TcpServerConnector server = new TcpServerConnector(createServerAddress(0),
 					ConnectorTestUtil.NUMBER_OF_THREADS, ConnectorTestUtil.IDLE_TIMEOUT_IN_S);
@@ -443,8 +443,8 @@ public class TcpEndpointContextTest {
 		client.start();
 
 		/* send messages to all servers */
-		List<RawData> messages = new ArrayList<>();
-		List<SimpleMessageCallback> callbacks = new ArrayList<>();
+		List<RawData> messages = new ArrayList<RawData>();
+		List<SimpleMessageCallback> callbacks = new ArrayList<SimpleMessageCallback>();
 		for (InetSocketAddress address : serverAddresses) {
 			SimpleMessageCallback callback = new SimpleMessageCallback();
 			RawData message = createMessage(address, 100, callback);
@@ -461,8 +461,8 @@ public class TcpEndpointContextTest {
 		}
 
 		/* send 2. (follow up) messages to all servers */
-		List<RawData> followupMessages = new ArrayList<>();
-		List<SimpleMessageCallback> followupCallbacks = new ArrayList<>();
+		List<RawData> followupMessages = new ArrayList<RawData>();
+		List<SimpleMessageCallback> followupCallbacks = new ArrayList<SimpleMessageCallback>();
 		for (InetSocketAddress address : serverAddresses) {
 			SimpleMessageCallback callback = new SimpleMessageCallback();
 			RawData message = createMessage(address, 100, callback);

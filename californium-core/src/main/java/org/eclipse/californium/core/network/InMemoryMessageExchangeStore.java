@@ -75,9 +75,9 @@ public class InMemoryMessageExchangeStore implements MessageExchangeStore {
 	private static final Logger LOGGER = LoggerFactory.getLogger(InMemoryMessageExchangeStore.class.getName());
 	private static final Logger HEALTH_LOGGER = LoggerFactory.getLogger(LOGGER.getName() + ".health");
 	// for all
-	private final ConcurrentMap<KeyMID, Exchange> exchangesByMID = new ConcurrentHashMap<>();
+	private final ConcurrentMap<KeyMID, Exchange> exchangesByMID = new ConcurrentHashMap<KeyMID, Exchange>();
 	// for outgoing
-	private final ConcurrentMap<Token, Exchange> exchangesByToken = new ConcurrentHashMap<>();
+	private final ConcurrentMap<Token, Exchange> exchangesByToken = new ConcurrentHashMap<Token, Exchange>();
 	private volatile boolean enableStatus;
 
 	private final NetworkConfig config;
@@ -473,7 +473,7 @@ public class InMemoryMessageExchangeStore implements MessageExchangeStore {
 
 	@Override
 	public List<Exchange> findByToken(Token token) {
-		List<Exchange> result = new ArrayList<>();
+		List<Exchange> result = new ArrayList<Exchange>();
 		if (token != null) {
 			// TODO: remove the for ...
 			for (Entry<Token, Exchange> entry : exchangesByToken.entrySet()) {

@@ -78,9 +78,9 @@ public final class CertificateRequest extends HandshakeMessage {
 
 	// Members ////////////////////////////////////////////////////////
 
-	private final List<ClientCertificateType> certificateTypes = new ArrayList<>();
-	private final List<SignatureAndHashAlgorithm> supportedSignatureAlgorithms = new ArrayList<>();
-	private final List<X500Principal> certificateAuthorities = new ArrayList<>();
+	private final List<ClientCertificateType> certificateTypes = new ArrayList<ClientCertificateType>();
+	private final List<SignatureAndHashAlgorithm> supportedSignatureAlgorithms = new ArrayList<SignatureAndHashAlgorithm>();
+	private final List<X500Principal> certificateAuthorities = new ArrayList<X500Principal>();
 	private int certificateAuthoritiesEncodedLength = 0;
 
 	// Constructors ///////////////////////////////////////////////////
@@ -207,14 +207,14 @@ public final class CertificateRequest extends HandshakeMessage {
 		DatagramReader reader = new DatagramReader(byteArray);
 
 		int length = reader.read(CERTIFICATE_TYPES_LENGTH_BITS);
-		List<ClientCertificateType> certificateTypes = new ArrayList<>();
+		List<ClientCertificateType> certificateTypes = new ArrayList<ClientCertificateType>();
 		for (int i = 0; i < length; i++) {
 			int code = reader.read(CERTIFICATE_TYPE_BITS);
 			certificateTypes.add(ClientCertificateType.getTypeByCode(code));
 		}
 
 		length = reader.read(SUPPORTED_SIGNATURE_LENGTH_BITS);
-		List<SignatureAndHashAlgorithm> supportedSignatureAlgorithms = new ArrayList<>();
+		List<SignatureAndHashAlgorithm> supportedSignatureAlgorithms = new ArrayList<SignatureAndHashAlgorithm>();
 		for (int i = 0; i < length; i += 2) {
 			int codeHash = reader.read(SUPPORTED_SIGNATURE_BITS);
 			int codeSignature = reader.read(SUPPORTED_SIGNATURE_BITS);
@@ -223,7 +223,7 @@ public final class CertificateRequest extends HandshakeMessage {
 		}
 
 		length = reader.read(CERTIFICATE_AUTHORITIES_LENGTH_BITS);
-		List<X500Principal> certificateAuthorities = new ArrayList<>();
+		List<X500Principal> certificateAuthorities = new ArrayList<X500Principal>();
 		while (length > 0) {
 			int nameLength = reader.read(CERTIFICATE_AUTHORITY_LENGTH_BITS);
 			byte[] name = reader.readBytes(nameLength);
@@ -562,7 +562,7 @@ public final class CertificateRequest extends HandshakeMessage {
 		if (chain == null) {
 			throw new NullPointerException("certificate chain must not be null");
 		} else if (chain.size() > 1) {
-			List<X509Certificate> result = new ArrayList<>();
+			List<X509Certificate> result = new ArrayList<X509Certificate>();
 			result.add(chain.get(0));
 			int i = 1;
 			for (; i < chain.size(); i++) {

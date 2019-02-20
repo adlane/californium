@@ -159,7 +159,7 @@ public class ExampleDTLSClient {
 		}
 		payload = payload.substring(0, length);
 		
-		List<ExampleDTLSClient> clientList = new ArrayList<>(clients);
+		List<ExampleDTLSClient> clientList = new ArrayList<ExampleDTLSClient>(clients);
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(),
 				new DaemonThreadFactory("Aux#"));
 

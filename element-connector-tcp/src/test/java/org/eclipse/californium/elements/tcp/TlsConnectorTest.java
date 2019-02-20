@@ -58,7 +58,7 @@ public class TlsConnectorTest {
 	@Rule
 	public TestNameLoggerRule names = new TestNameLoggerRule();
 
-	private final List<Connector> cleanup = new ArrayList<>();
+	private final List<Connector> cleanup = new ArrayList<Connector>();
 
 	@BeforeClass
 	public static void initializeSsl() throws Exception {
@@ -111,7 +111,7 @@ public class TlsConnectorTest {
 		server.setRawDataReceiver(serverCatcher);
 		server.start();
 
-		List<RawData> messages = new ArrayList<>();
+		List<RawData> messages = new ArrayList<RawData>();
 		for (int i = 0; i < NUMBER_OF_CONNECTIONS; i++) {
 			TlsClientConnector client = new TlsClientConnector(clientSslContext, NUMBER_OF_THREADS,
 					CONNECTION_TIMEOUT_IN_MS, IDLE_TIMEOUT_IN_S);
@@ -144,7 +144,7 @@ public class TlsConnectorTest {
 	@Test
 	public void singleClientManyServers() throws Exception {
 		int serverCount = 3;
-		Map<InetSocketAddress, Catcher> servers = new IdentityHashMap<>();
+		Map<InetSocketAddress, Catcher> servers = new IdentityHashMap<InetSocketAddress, Catcher>();
 		for (int i = 0; i < serverCount; i++) {
 			TlsServerConnector server = new TlsServerConnector(serverSslContext, createServerAddress(0),
 					NUMBER_OF_THREADS, IDLE_TIMEOUT_IN_S);
@@ -163,7 +163,7 @@ public class TlsConnectorTest {
 		client.setRawDataReceiver(clientCatcher);
 		client.start();
 
-		List<RawData> messages = new ArrayList<>();
+		List<RawData> messages = new ArrayList<RawData>();
 		for (InetSocketAddress address : servers.keySet()) {
 			RawData message = createMessage(address, 100, null);
 			messages.add(message);

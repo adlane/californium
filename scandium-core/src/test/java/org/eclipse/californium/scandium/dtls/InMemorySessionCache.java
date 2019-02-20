@@ -30,7 +30,7 @@ import org.eclipse.californium.elements.util.DatagramWriter;
  */
 public class InMemorySessionCache implements SessionCache {
 
-	private final Map<SessionId, byte[]> cache = new ConcurrentHashMap<>();
+	private final Map<SessionId, byte[]> cache = new ConcurrentHashMap<SessionId, byte[]>();
 
 	/**
 	 * Count for {@link #put(DTLSSession)} calls.

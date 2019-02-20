@@ -80,7 +80,7 @@ public class MapBasedMessageIdTracker implements MessageIdTracker {
 		counter = initialMid - minMid;
 		min = minMid;
 		range = maxMid - minMid;
-		messageIds = new HashMap<>(range);
+		messageIds = new HashMap<Integer, Long>(range);
 	}
 
 	/**

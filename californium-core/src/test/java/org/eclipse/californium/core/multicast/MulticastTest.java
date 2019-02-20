@@ -165,7 +165,7 @@ public class MulticastTest {
 	private static class MultiCoapHandler implements CoapHandler {
 
 		private int index;
-		private List<CoapResponse> responses = new ArrayList<>();
+		private List<CoapResponse> responses = new ArrayList<CoapResponse>();
 
 		public synchronized CoapResponse waitOnLoad(long timeout) {
 			if (!(index < responses.size())) {

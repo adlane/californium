@@ -148,7 +148,7 @@ public class ReverseRequest extends CoapResource {
 			return;
 		}
 
-		List<String> requestUriQuery = new ArrayList<>();
+		List<String> requestUriQuery = new ArrayList<String>();
 		List<String> uriQuery = request.getOptions().getUriQuery();
 		Integer numberOfRequests = null;
 		String resource = null;

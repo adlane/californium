@@ -110,7 +110,7 @@ public final class OptionSet {
 		observe             = null;
 		oscore				= null;
 		
-		others              = null; // new LinkedList<>();
+		others              = null; // new LinkedList<Option>();
 	}
 
 	public void clear() {

@@ -173,7 +173,7 @@ public class DirectDatagramSocketImpl extends AbstractDatagramSocketImpl {
 	 * @see #join(InetAddress)
 	 * @see #leave(InetAddress)
 	 */
-	private final Set<InetAddress> multicast = new HashSet<>();
+	private final Set<InetAddress> multicast = new HashSet<InetAddress>();
 
 	/**
 	 * Create instance of this socket implementation.
@@ -321,7 +321,7 @@ public class DirectDatagramSocketImpl extends AbstractDatagramSocketImpl {
 			throw new PortUnreachableException(message);
 		}
 		// protect from parallel close()
-		destinations = new ArrayList<>(destinations);
+		destinations = new ArrayList<DirectDatagramSocketImpl>(destinations);
 		if (destinations.isEmpty()) {
 			String message = String.format("destination port %s not longer available!", exchange.destinationPort);
 			if (LOGGER.isErrorEnabled()) {
@@ -458,7 +458,7 @@ public class DirectDatagramSocketImpl extends AbstractDatagramSocketImpl {
 	 *             no free port is available.
 	 */
 	private int bind(int lport) throws SocketException {
-		List<DirectDatagramSocketImpl> newDestinations = new ArrayList<>();
+		List<DirectDatagramSocketImpl> newDestinations = new ArrayList<DirectDatagramSocketImpl>();
 		newDestinations.add(this);
 		if (0 >= lport) {
 			int count = AUTO_PORT_RANGE_SIZE;

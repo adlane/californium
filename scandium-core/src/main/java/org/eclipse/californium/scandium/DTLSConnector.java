@@ -687,7 +687,7 @@ public class DTLSConnector implements Connector, RecordLayer {
 	public final void stop() {
 		ExecutorService shutdownTimer = null;
 		ExecutorService shutdown = null;
-		List<Runnable> pending = new ArrayList<>();
+		List<Runnable> pending = new ArrayList<Runnable>();
 		synchronized (this) {
 			if (running.compareAndSet(true, false)) {
 				LOGGER.info("Stopping DTLS connector on [{}]", lastBindAddress);

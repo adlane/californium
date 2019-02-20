@@ -211,9 +211,9 @@ public class BlockwiseLayer extends AbstractLayer {
 				NetworkConfigDefaults.DEFAULT_MAX_RESOURCE_BODY_SIZE);
 		int maxActivePeers = config.getInt(NetworkConfig.Keys.MAX_ACTIVE_PEERS,
 				NetworkConfigDefaults.DEFAULT_MAX_ACTIVE_PEERS);
-		block1Transfers = new LeastRecentlyUsedCache<>(maxActivePeers, TimeUnit.MILLISECONDS.toSeconds(blockTimeout));
+		block1Transfers = new LeastRecentlyUsedCache<KeyUri, Block1BlockwiseStatus>(maxActivePeers, TimeUnit.MILLISECONDS.toSeconds(blockTimeout));
 		block1Transfers.setEvictingOnReadAccess(false);
-		block2Transfers = new LeastRecentlyUsedCache<>(maxActivePeers, TimeUnit.MILLISECONDS.toSeconds(blockTimeout));
+		block2Transfers = new LeastRecentlyUsedCache<KeyUri, Block2BlockwiseStatus>(maxActivePeers, TimeUnit.MILLISECONDS.toSeconds(blockTimeout));
 		block2Transfers.setEvictingOnReadAccess(false);
 		strictBlock2Option = config.getBoolean(NetworkConfig.Keys.BLOCKWISE_STRICT_BLOCK2_OPTION, NetworkConfigDefaults.DEFAULT_BLOCKWISE_STRICT_BLOCK2_OPTION);
 		

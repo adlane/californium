@@ -68,7 +68,7 @@ public class CoapExchange {
 		this.exchange = exchange;
 		this.resource = resource;
 		if (getRequestOptions().getURIQueryCount() > 0) {
-			this.queryParameters = new HashMap<>();
+			this.queryParameters = new HashMap<String, String>();
 			for (String param : getRequestOptions().getUriQuery()) {
 				addParameter(param);
 			}

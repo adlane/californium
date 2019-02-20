@@ -207,7 +207,7 @@ public class UDPConnector implements Connector {
 	@Override
 	public void stop() {
 		// move onError callback out of synchronized block
-		List<RawData> pending = new ArrayList<>(outgoing.size());
+		List<RawData> pending = new ArrayList<RawData>(outgoing.size());
 		synchronized (this) {
 			if (!running) {
 				return;

@@ -95,7 +95,7 @@ public class X509CertPath implements Principal {
 		if (certificateChain != null && certificateChain.length == 0) {
 			throw new IllegalArgumentException("Certificate chain must not be empty!");
 		}
-		List<X509Certificate> chain = new ArrayList<>();
+		List<X509Certificate> chain = new ArrayList<X509Certificate>();
 		for (Certificate cert : certificateChain) {
 			if (!(cert instanceof X509Certificate)) {
 				throw new IllegalArgumentException("Given certificate is not X.509! " + cert);
@@ -132,7 +132,7 @@ public class X509CertPath implements Principal {
 		if (certificateChain == null) {
 			throw new NullPointerException("Certificate chain must not be null!");
 		}
-		List<X509Certificate> certificates = new ArrayList<>();
+		List<X509Certificate> certificates = new ArrayList<X509Certificate>();
 		X500Principal issuer = null;
 		try {
 			int index = 0;

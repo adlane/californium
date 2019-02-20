@@ -46,7 +46,7 @@ public final class InMemoryObservationStore implements ObservationStore {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(InMemoryObservationStore.class.getName());
 	private static final Logger HEALTH_LOGGER = LoggerFactory.getLogger(LOGGER.getName() + ".health");
-	private final ConcurrentMap<Token, Observation> map = new ConcurrentHashMap<>();
+	private final ConcurrentMap<Token, Observation> map = new ConcurrentHashMap<Token, Observation>();
 	private volatile boolean enableStatus;
 	private final NetworkConfig config;
 	private ScheduledFuture<?> statusLogger;

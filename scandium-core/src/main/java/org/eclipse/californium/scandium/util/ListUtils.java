@@ -49,6 +49,6 @@ public class ListUtils {
 			}
 		}
 		// though the input List is unspecific, ensure not to chain unmodifiables
-		return Collections.unmodifiableList(new ArrayList<>(values));
+		return Collections.unmodifiableList(new ArrayList<T>(values));
 	}
 }

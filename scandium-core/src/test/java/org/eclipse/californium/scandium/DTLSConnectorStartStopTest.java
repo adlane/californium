@@ -175,7 +175,7 @@ public class DTLSConnectorStartStopTest {
 			LOGGER.info("{} start/stop: {}/{} loops, {} msgs server {}, client {}",
 					testLogTag, loop, loops, pending, dest, client.getAddress());
 
-			List<SimpleMessageCallback> callbacks = new ArrayList<>();
+			List<SimpleMessageCallback> callbacks = new ArrayList<SimpleMessageCallback>();
 
 			CountDownLatch latch = new CountDownLatch(1);
 			clientChannel.setLatch(latch);

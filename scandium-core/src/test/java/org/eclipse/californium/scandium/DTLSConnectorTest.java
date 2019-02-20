@@ -490,7 +490,7 @@ public class DTLSConnectorTest {
 		// same IP address and port again
 		
 		final CountDownLatch latch = new CountDownLatch(1);
-		final List<Record> receivedRecords = new ArrayList<>();
+		final List<Record> receivedRecords = new ArrayList<Record>();
 
 		DataHandler handler = new DataHandler() {
 			
@@ -580,7 +580,7 @@ public class DTLSConnectorTest {
 	public void testClientHelloRetransmissionDoNotRestartHandshake() throws Exception {
 		// configure UDP connector
 		CountDownLatch latch = new CountDownLatch(1);
-		final List<Record> receivedRecords = new ArrayList<>();
+		final List<Record> receivedRecords = new ArrayList<Record>();
 		LatchDecrementingDataHandler handler = new LatchDecrementingDataHandler(latch) {
 			@Override
 			public boolean handle(byte[] data) {
@@ -804,7 +804,7 @@ public class DTLSConnectorTest {
 	public void testConnectorSendsHelloVerifyRequestWithoutCreatingSession() throws Exception {
 
 		final CountDownLatch latch = new CountDownLatch(1);
-		final List<Record> receivedRecords = new ArrayList<>();
+		final List<Record> receivedRecords = new ArrayList<Record>();
 		InetSocketAddress endpoint = new InetSocketAddress(12000);
 
 		DataHandler handler = new DataHandler() {
@@ -897,7 +897,7 @@ public class DTLSConnectorTest {
 			.build();
 		client = new DTLSConnector(clientConfig);
 		client.start();
-		final AtomicReference<AlertMessage> alert = new AtomicReference<>();
+		final AtomicReference<AlertMessage> alert = new AtomicReference<AlertMessage>();
 		MessageCallback callback = new MessageCallback() {
 
 			@Override
@@ -1144,7 +1144,7 @@ public class DTLSConnectorTest {
 		ClientHello hello = null;
 		
 		if (sessionToResume == null) {
-			List<CipherSuite> ciperSuites = new ArrayList<>();
+			List<CipherSuite> ciperSuites = new ArrayList<CipherSuite>();
 			ciperSuites.add(CipherSuite.TLS_PSK_WITH_AES_128_CCM_8);
 			ciperSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8);
 			hello = new ClientHello(new ProtocolVersion(), ciperSuites, null, null, clientEndpoint);
@@ -1210,7 +1210,7 @@ public class DTLSConnectorTest {
 
 	private static class RecordCollectorDataHandler implements DataHandler {
 
-		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<>();
+		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<List<Record>>();
 
 		@Override
 		public void handleData(byte[] data) {
@@ -1228,7 +1228,7 @@ public class DTLSConnectorTest {
 	private void givenAnIncompleteHandshake() throws Exception {
 		// configure UDP connector
 		CountDownLatch latch = new CountDownLatch(1);
-		final List<Record> receivedRecords = new ArrayList<>();
+		final List<Record> receivedRecords = new ArrayList<Record>();
 		LatchDecrementingDataHandler handler = new LatchDecrementingDataHandler(latch) {
 			@Override
 			public boolean handle(byte[] data) {

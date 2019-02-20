@@ -210,7 +210,7 @@ public abstract class Handshaker {
 	 */
 	protected boolean sniEnabled = true;
 
-	private final Set<SessionListener> sessionListeners = new LinkedHashSet<>();
+	private final Set<SessionListener> sessionListeners = new LinkedHashSet<SessionListener>();
 
 	private boolean changeCipherSuiteMessageExpected = false;
 	private boolean sessionEstablished = false;
@@ -281,7 +281,7 @@ public abstract class Handshaker {
 
 		private ChangeCipherSpecMessage changeCipherSpec = null;
 
-		private SortedSet<Record> queue = new TreeSet<>(new Comparator<Record>() {
+		private SortedSet<Record> queue = new TreeSet<Record>(new Comparator<Record>() {
 
 			@Override
 			public int compare(Record r1, Record r2) {

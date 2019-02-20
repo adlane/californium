@@ -441,7 +441,7 @@ public class ConnectorHelper {
 
 	static class RecordCollectorDataHandler implements ConnectorHelper.DataHandler {
 
-		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<>();
+		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<List<Record>>();
 
 		@Override
 		public void handleData(InetSocketAddress endpoint, byte[] data) {

@@ -169,9 +169,9 @@ public class CredentialsUtil {
 	public static List<Mode> parse(String[] args, List<Mode> defaults, List<Mode> supported) {
 		List<Mode> modes;
 		if (args.length == 0) {
-			modes = new ArrayList<>(defaults.size());
+			modes = new ArrayList<Mode>(defaults.size());
 		} else {
-			modes = new ArrayList<>(args.length);
+			modes = new ArrayList<Mode>(args.length);
 			for (String mode : args) {
 				if (getOptCid(mode) != null) {
 					continue;
@@ -282,7 +282,7 @@ public class CredentialsUtil {
 					}
 				}
 				if (x509 >= 0 || rpk >= 0) {
-					List<CertificateType> types = new ArrayList<>();
+					List<CertificateType> types = new ArrayList<CertificateType>();
 					if (x509 >= 0 && rpk >= 0) {
 						if (rpk < x509) {
 							types.add(CertificateType.RAW_PUBLIC_KEY);
@@ -325,7 +325,7 @@ public class CredentialsUtil {
 			config.setRpkTrustAll();
 		}
 		if (psk && config.getIncompleteConfig().getSupportedCipherSuites() == null) {
-			List<CipherSuite> suites = new ArrayList<>();
+			List<CipherSuite> suites = new ArrayList<CipherSuite>();
 			if (x509 >= 0 || rpk >= 0 || x509Trust || rpkTrust) {
 				suites.addAll(CipherSuite.getEcdsaCipherSuites());
 			}
