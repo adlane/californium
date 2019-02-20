@@ -16,7 +16,7 @@ public class TcpThroughputClient {
 		CoapClient coapClient = new CoapClient("coap+tcp", "localhost", CoAP.DEFAULT_COAP_PORT, "echo");
 
 		Random random = new Random(0);
-		long messages = 200_000;
+		long messages = 200000;
 		long total = 0;
 
 		long start = System.nanoTime();
