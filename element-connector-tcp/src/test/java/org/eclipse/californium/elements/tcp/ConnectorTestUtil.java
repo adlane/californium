@@ -75,7 +75,9 @@ public class ConnectorTestUtil {
 		byte[] data = new byte[messageSize];
 		random.nextBytes(data);
 
-		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+		ByteArrayOutputStream stream = null;
+		try {
+      stream = new ByteArrayOutputStream();
 			if (messageSize < 13) {
 				stream.write(messageSize << 4);
 			} else if (messageSize < (1 << 8) + 13) {
@@ -100,7 +102,11 @@ public class ConnectorTestUtil {
 			stream.flush();
 
 			return RawData.outbound(stream.toByteArray(), contextToSent, callback, false);
-		}
+    } finally {
+      if (stream != null) {
+        stream.close();
+      }
+    }
 	}
 
 	public static RawData createMessage(InetSocketAddress address, int messageSize, MessageCallback callback)

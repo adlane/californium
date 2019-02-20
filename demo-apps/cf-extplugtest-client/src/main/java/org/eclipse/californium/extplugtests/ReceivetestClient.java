@@ -249,7 +249,9 @@ public class ReceivetestClient {
 	 */
 	public static String getUUID() {
 		Properties props = new Properties();
-		try (FileReader reader = new FileReader(UUID_FILE)) {
+		FileReader reader = null;
+    try {
+      reader = new FileReader(UUID_FILE);
 			props.load(reader);
 			String uid = props.getProperty(UUID_KEY);
 			if (uid == null) {
@@ -258,13 +260,29 @@ public class ReceivetestClient {
 			return uid;
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
-		}
-		try (FileWriter writer = new FileWriter(UUID_FILE)) {
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException e) {
+        }
+      }
+    }
+		FileWriter writer = null;
+    try {
+      writer = new FileWriter(UUID_FILE);
 			String uid = UUID.randomUUID().toString();
 			props.setProperty(UUID_KEY, uid);
 			props.store(writer, "Californium CoAP UUID file");
 			return uid;
 		} catch (IOException e) {
+    } finally {
+      if (writer != null) {
+        try {
+          writer.close();
+        } catch (IOException e) {
+        }
+      }
 		}
 		return "anonymous";
 	}

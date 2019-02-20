@@ -100,7 +100,9 @@ public class SecureTest {
 	@Test
 	public void testSecureGetHandshakeTimeout() throws Exception {
 		// Get a free port to be sure we send request to an absent port
-		try (DatagramSocket datagramSocket = new DatagramSocket(0)) {
+		DatagramSocket datagramSocket = null;
+		try {
+      datagramSocket = new DatagramSocket(0);
 			int freePort = datagramSocket.getLocalPort();
 
 			// Create an endpoint
@@ -148,22 +150,22 @@ public class SecureTest {
 		server.addEndpoint(serverEndpoint);
 		server.start();
 		URI uri = serverEndpoint.getUri();
-		List<CoapEndpoint> clientEndpoints = new ArrayList<>();
+		List<CoapEndpoint> clientEndpoints = new ArrayList<CoapEndpoint>();
 		for (int i = 0; i < TEST_CLIENTS; ++i) {
 			CoapEndpoint clientEndpoint = createEndpoint("client-" + i, TEST_EXCHANGE_LIFETIME, TEST_ACK_TIMEOUT,
 					TEST_DTLS_FAST_TIMEOUT, 0);
 			clientEndpoint.start();
 			clientEndpoints.add(clientEndpoint);
 		}
-		List<Request> requests = new ArrayList<>();
+		List<Request> requests = new ArrayList<Request>();
 		for (CoapEndpoint clientEndpoint : clientEndpoints) {
 			Request request = Request.newGet();
 			request.setURI(uri);
 			clientEndpoint.sendRequest(request);
 			requests.add(request);
 		}
-		List<Integer> pending = new ArrayList<>();
-		List<Integer> errors = new ArrayList<>();
+		List<Integer> pending = new ArrayList<Integer>();
+		List<Integer> errors = new ArrayList<Integer>();
 		for (int index = 0; index < requests.size(); ++index) {
 			Request request = requests.get(index);
 			Response response = request.waitForResponse(15000);

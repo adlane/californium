@@ -426,12 +426,23 @@ public final class NetworkConfig {
 			throw new NullPointerException("file must not be null");
 		} else {
 			LOGGER.info("loading properties from file {}", file.getAbsolutePath());
-			try (InputStream inStream = new FileInputStream(file)) {
+			InputStream inStream = null;
+			try {
+			  inStream = new FileInputStream(file);
 				load(inStream);
 			} catch (IOException e) {
 				LOGGER.warn("cannot load properties from file {}: {}",
 						new Object[] { file.getAbsolutePath(), e.getMessage() });
-			}
+      } finally {
+        if (inStream != null) {
+          try {
+            inStream.close();
+          } catch (IOException e) {
+            LOGGER.warn("cannot load properties from file {}: {}",
+                new Object[] { file.getAbsolutePath(), e.getMessage() });
+          }
+        }
+      }
 		}
 	}
 
@@ -476,12 +487,23 @@ public final class NetworkConfig {
 			throw new NullPointerException("file must not be null");
 		} else {
 			LOGGER.info("writing properties to file {}", file.getAbsolutePath());
-			try (FileWriter writer = new FileWriter(file)) {
+			FileWriter writer = null;
+			try {
+  			writer = new FileWriter(file);
 				properties.store(writer, header);
 			} catch (IOException e) {
 				LOGGER.warn("cannot write properties to file {}: {}",
 						new Object[] { file.getAbsolutePath(), e.getMessage() });
-			}
+      } finally {
+        if (writer != null) {
+          try {
+            writer.close();
+          } catch (IOException e) {
+            LOGGER.warn("cannot write properties to file {}: {}",
+                new Object[] { file.getAbsolutePath(), e.getMessage() });
+          }
+        }
+      }
 		}
 	}
 
