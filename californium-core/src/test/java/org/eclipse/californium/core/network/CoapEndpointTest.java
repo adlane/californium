@@ -195,8 +195,8 @@ public class CoapEndpointTest {
 	public void testInboxImplRejectsMalformedRequest() throws Exception {
 
 		// GIVEN a request with missing payload
-		byte[] malformedGetRequest = new byte[] { 0b01000000, // ver 1, CON, token length: 0
-				0b00000001, // code: 0.01 (GET request)
+		byte[] malformedGetRequest = new byte[] { 0x40, // ver 1, CON, token length: 0
+				0x01, // code: 0.01 (GET request)
 				0x00, 0x10, // message ID
 				(byte) 0xFF // payload marker
 		};
@@ -211,8 +211,8 @@ public class CoapEndpointTest {
 	}
 
 	private static byte[] getSerializedRequest() {
-		return new byte[] { 0b01000011, // ver 1, CON, token length: 3
-				0b00000001, // code: 0.01 (GET request)
+		return new byte[] { 0x43, // ver 1, CON, token length: 3
+				0x01, // code: 0.01 (GET request)
 				0x00, 0x10, // message ID
 				0x01, 0x02, 0x03 // three byte token
 		};

@@ -98,7 +98,7 @@ public final class CoAP {
 	 * @return the value represented by the three most significant bits of the code.
 	 */
 	public static int getCodeClass(final int code) {
-		return (code & 0b11100000) >> 5;
+		return (code & 0xE0) >> 5;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public final class CoAP {
 	 * @return the value represented by the five least significant bits of the code.
 	 */
 	public static int getCodeDetail(final int code) {
-		return code & 0b00011111;
+		return code & 0x1F;
 	}
 
 	/**
@@ -640,19 +640,19 @@ public final class CoAP {
 		public static final int VERSION = 1;
 
 		/** The code value of an empty message. */
-		public static final int EMPTY_CODE = 0b00000000; // 0.00
+		public static final int EMPTY_CODE = 0x00; // 0.00
 
 		/** The lowest value of a request code. */
-		public static final int REQUEST_CODE_LOWER_BOUND = 0b00000001; // 0.01
+		public static final int REQUEST_CODE_LOWER_BOUND = 0x01; // 0.01
 
 		/** The highest value of a request code. */
-		public static final int REQUEST_CODE_UPPER_BOUND = 0b00011111; // 0.31
+		public static final int REQUEST_CODE_UPPER_BOUND = 0x1F; // 0.31
 
 		/** The lowest value of a response code. */
-		public static final int RESPONSE_CODE_LOWER_BOUND = 0b01000000; // 2.00
+		public static final int RESPONSE_CODE_LOWER_BOUND = 0x40; // 2.00
 
 		/** The highest value of a response code. */
-		public static final int RESPONSE_CODE_UPPER_BOUND = 0b10111111; // 5.31
+		public static final int RESPONSE_CODE_UPPER_BOUND = 0xBF; // 5.31
 
 		private MessageFormat() {
 			// prevent instantiation
