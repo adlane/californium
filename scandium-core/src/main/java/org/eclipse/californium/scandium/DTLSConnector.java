@@ -586,6 +586,10 @@ public class DTLSConnector implements Connector, RecordLayer {
 				Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 				while (interfaces.hasMoreElements()) {
 					NetworkInterface iface = interfaces.nextElement();
+          if (iface.getName().startsWith("can")) {
+            // ignore CAN interfaces (MTU = 16)
+            continue;
+          }
 					int ifaceMtu = iface.getMTU();
 					if (ifaceMtu > 0 && ifaceMtu < mtu) {
 						mtu = ifaceMtu;
