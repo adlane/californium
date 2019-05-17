@@ -217,7 +217,7 @@ public class InMemoryPskStore implements PskStore {
 			synchronized (scopedKeys) {
 				Map<PskPublicInformation, Psk> keysForServerName = scopedKeys.get(virtualHost);
 				if (keysForServerName == null) {
-					keysForServerName = new ConcurrentHashMap<String, byte[]>();
+					keysForServerName = new ConcurrentHashMap<PskPublicInformation, Psk>();
 					scopedKeys.put(virtualHost, keysForServerName);
 				}
 				keysForServerName.put(identity, new Psk(identity, key));
@@ -312,7 +312,7 @@ public class InMemoryPskStore implements PskStore {
 			synchronized (scopedKeys) {
 				Map<ServerName, PskPublicInformation> identities = scopedIdentities.get(peerAddress);
 				if (identities == null) {
-					identities = new ConcurrentHashMap<ServerName, String>();
+					identities = new ConcurrentHashMap<ServerName, PskPublicInformation>();
 					scopedIdentities.put(peerAddress, identities);
 				}
 				identities.put(virtualHost, identity);

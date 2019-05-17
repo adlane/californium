@@ -50,7 +50,7 @@ public class ReassemblingHandshakeMessageTest {
 	public void setUp() {
 		payload = new byte[MESSAGE_SIZE];
 		rand.nextBytes(payload);
-		fragments = new LinkedList<>();
+		fragments = new LinkedList<FragmentedHandshakeMessage>();
 		int fragmentOffset = 0;
 		while (fragmentOffset < payload.length) {
 			int fragmentLength = Math.min(MAX_FRAGMENT_SIZE, payload.length - fragmentOffset);

@@ -388,7 +388,7 @@ public enum CipherSuite {
 	 * @return list of all supported PSK cipher suites. Ordered by their definition above.
 	 */
 	public static List<CipherSuite> getPskCipherSuites(boolean ecdhePsk) {
-		List<CipherSuite> list = new ArrayList<>();
+		List<CipherSuite> list = new ArrayList<CipherSuite>();
 		for (CipherSuite suite : values()) {
 			if (suite.isSupported()) {
 				if (KeyExchangeAlgorithm.PSK.equals(suite.keyExchange)
@@ -421,7 +421,7 @@ public enum CipherSuite {
 	 *         algorithm. Ordered by their definition above.
 	 */
 	public static List<CipherSuite> getCertificateCipherSuites(String keyAlgorithm) {
-		List<CipherSuite> list = new ArrayList<>();
+		List<CipherSuite> list = new ArrayList<CipherSuite>();
 		for (CipherSuite suite : values()) {
 			if (suite.isSupported()) {
 				if (suite.certificateKeyAlgorithm.name().equals(keyAlgorithm)) {

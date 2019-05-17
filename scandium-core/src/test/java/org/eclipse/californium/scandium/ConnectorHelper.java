@@ -148,7 +148,7 @@ public class ConnectorHelper {
 				.setServerOnly(true);
 
 		if (builder.getIncompleteConfig().getSupportedCipherSuites() == null) {
-			List<CipherSuite> list = new ArrayList<>(CipherSuite.getEcdsaCipherSuites());
+			List<CipherSuite> list = new ArrayList<CipherSuite>(CipherSuite.getEcdsaCipherSuites());
 			list.addAll(CipherSuite.getPskCipherSuites(true));
 			builder.setSupportedCipherSuites(list);
 		}
