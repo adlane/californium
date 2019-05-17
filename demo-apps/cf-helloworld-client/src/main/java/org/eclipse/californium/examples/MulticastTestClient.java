@@ -73,7 +73,9 @@ public class MulticastTestClient {
 		try {
 			// sends an uni-cast request
 			response = client.advanced(request);
-		} catch (ConnectorException | IOException e) {
+		} catch (ConnectorException e) {
+			System.err.println("Error occurred while sending request: " + e);
+		} catch (IOException e) {
 			System.err.println("Error occurred while sending request: " + e);
 		}
 

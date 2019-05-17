@@ -122,7 +122,14 @@ public class SecureTest {
 
 			// Ensure there is no leak : all exchanges are completed
 			assertAllExchangesAreCompleted(coapTestEndpoint, time);
-		}
+    } finally {
+      if (datagramSocket != null) {
+        try {
+          datagramSocket.close();
+        } catch (Exception e) {
+        }
+      }
+    }
 	}
 
 	@Test
