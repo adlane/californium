@@ -64,7 +64,10 @@ public class SecureClient {
 		} catch (URISyntaxException e) {
 			System.err.println("Invalid URI: " + e.getMessage());
 			System.exit(-1);
-		} catch (ConnectorException | IOException e) {
+		} catch (ConnectorException e) {
+			System.err.println("Error occurred while sending request: " + e);
+			System.exit(-1);
+		} catch (IOException e) {
 			System.err.println("Error occurred while sending request: " + e);
 			System.exit(-1);
 		}

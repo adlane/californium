@@ -73,7 +73,9 @@ public class GETClient {
 			CoapResponse response = null;
 			try {
 				response = client.get();
-			} catch (ConnectorException | IOException e) {
+			} catch (ConnectorException e) {
+				System.err.println("Got an error: " + e);
+			} catch (IOException e) {
 				System.err.println("Got an error: " + e);
 			}
 
