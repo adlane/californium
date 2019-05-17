@@ -555,7 +555,11 @@ public class Request extends Message {
 					null);
 			super.setDestinationContext(context);
 		}
-		multicast = context.getPeerAddress().getAddress().isMulticastAddress();
+    if (context.getPeerAddress() != null) {
+      if (context.getPeerAddress().getAddress() != null) {
+        multicast = context.getPeerAddress().getAddress().isMulticastAddress();
+      }
+    }
 	}
 
 	/**
@@ -573,7 +577,12 @@ public class Request extends Message {
 			}
 		}
 		super.setRequestDestinationContext(peerContext);
-		multicast = peerContext != null && peerContext.getPeerAddress().getAddress().isMulticastAddress();
+		multicast = false;
+    if (peerContext != null && peerContext.getPeerAddress() != null) {
+      if (peerContext.getPeerAddress().getAddress() != null) {
+        multicast = peerContext.getPeerAddress().getAddress().isMulticastAddress();
+      }
+    }
 		return this;
 	}
 
