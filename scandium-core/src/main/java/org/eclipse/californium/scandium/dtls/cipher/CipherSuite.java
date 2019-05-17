@@ -493,7 +493,7 @@ public enum CipherSuite {
 	 */
 	@Deprecated
 	public static List<CipherSuite> getPskCipherSuites(boolean recommendedCipherSuitesOnly, boolean ecdhePsk) {
-		List<CipherSuite> list = new ArrayList<>();
+		List<CipherSuite> list = new ArrayList<CipherSuite>();
 		for (CipherSuite suite : values()) {
 			if (suite.isSupported()) {
 				if (KeyExchangeAlgorithm.PSK.equals(suite.keyExchange)
@@ -561,7 +561,7 @@ public enum CipherSuite {
 	 *         algorithm. Ordered by their definition above.
 	 */
 	public static List<CipherSuite> getCertificateCipherSuites(boolean recommendedCipherSuitesOnly, String keyAlgorithm) {
-		List<CipherSuite> list = new ArrayList<>();
+		List<CipherSuite> list = new ArrayList<CipherSuite>();
 		for (CipherSuite suite : values()) {
 			if (suite.isSupported()) {
 				if (suite.certificateKeyAlgorithm.name().equals(keyAlgorithm)) {

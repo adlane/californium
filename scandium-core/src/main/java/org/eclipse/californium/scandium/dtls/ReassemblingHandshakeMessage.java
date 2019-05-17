@@ -39,7 +39,7 @@ public final class ReassemblingHandshakeMessage extends HandshakeMessage {
 	private final HandshakeType type;
 
 	/** The list of fragment ranges. */
-	private final List<FragmentRange> fragments = new ArrayList<>();
+	private final List<FragmentRange> fragments = new ArrayList<FragmentRange>();
 
 	private static class FragmentRange {
 

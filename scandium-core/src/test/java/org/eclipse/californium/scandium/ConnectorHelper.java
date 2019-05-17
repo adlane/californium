@@ -166,7 +166,7 @@ public class ConnectorHelper {
 				.setServerOnly(true);
 
 		if (builder.getIncompleteConfig().getSupportedCipherSuites() == null) {
-			List<CipherSuite> list = new ArrayList<>(CipherSuite.getEcdsaCipherSuites(false));
+			List<CipherSuite> list = new ArrayList<CipherSuite>(CipherSuite.getEcdsaCipherSuites(false));
 			list.addAll(CipherSuite.getCipherSuitesByKeyExchangeAlgorithm(false, KeyExchangeAlgorithm.ECDHE_PSK,
 					KeyExchangeAlgorithm.PSK));
 			builder.setRecommendedCipherSuitesOnly(false);

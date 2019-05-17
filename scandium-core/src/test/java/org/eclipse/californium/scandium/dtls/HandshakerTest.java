@@ -339,7 +339,7 @@ public class HandshakerTest {
 
 	private void givenAMissFragmentedHandshakeMessage(HandshakeMessage message, int fragmentStep, int maxFragmentSize) {
 		givenAFragmentedHandshakeMessage(message, fragmentStep, maxFragmentSize);
-		List<FragmentedHandshakeMessage> fragments = new LinkedList<>(Arrays.asList(handshakeMessageFragments));
+		List<FragmentedHandshakeMessage> fragments = new LinkedList<FragmentedHandshakeMessage>(Arrays.asList(handshakeMessageFragments));
 		fragments.remove(fragments.size() - 1);
 		fragments.remove(fragments.size() / 2);
 		givenAFragmentedHandshakeMessage(message, fragmentStep / 2, maxFragmentSize / 2);

@@ -89,7 +89,7 @@ public class SecureNatTest {
 	private TestUtilPskStore pskStore;
 	private NetworkConfig config;
 	private CoapEndpoint serverEndpoint;
-	private List<CoapEndpoint> clientEndpoints = new ArrayList<>();
+	private List<CoapEndpoint> clientEndpoints = new ArrayList<CoapEndpoint>();
 	private MyResource resource;
 
 	private String uri;
@@ -178,7 +178,7 @@ public class SecureNatTest {
 		createNat();
 
 		int overallResumes = 0;
-		List<Integer> resumeEndpoints = new ArrayList<>();
+		List<Integer> resumeEndpoints = new ArrayList<Integer>();
 
 		CoapClient client = new CoapClient(uri);
 		CoapResponse coapResponse = client.get();
@@ -271,7 +271,7 @@ public class SecureNatTest {
 		nat.setMessageReordering(10, 500, 500);
 
 		int overallResumes = 0;
-		List<Integer> resumeEndpoints = new ArrayList<>();
+		List<Integer> resumeEndpoints = new ArrayList<Integer>();
 
 		CoapClient client = new CoapClient(uri);
 		CoapResponse coapResponse = client.get();
@@ -298,7 +298,7 @@ public class SecureNatTest {
 
 	private void testMultipleSecureGet(int loop, int overallResumes, List<Integer> resumeEndpoints) throws InterruptedException {
 		int num = clientEndpoints.size();
-		List<Request> requests = new ArrayList<>();
+		List<Request> requests = new ArrayList<Request>();
 		for (int count = 1; count < num; ++count) {
 			CoapEndpoint endpoint = clientEndpoints.get(count);
 			Request request = Request.newGet();
