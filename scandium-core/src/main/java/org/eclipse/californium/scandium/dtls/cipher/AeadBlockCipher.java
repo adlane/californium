@@ -21,7 +21,6 @@ import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.GCMParameterSpec;
 
 import org.eclipse.californium.elements.util.NotForAndroid;
 
@@ -82,7 +81,7 @@ public class AeadBlockCipher {
 		if (AES_CCM.equals(suite.getTransformation())) {
 			return CCMBlockCipher.decrypt(key, nonce, a, c, suite.getMacLength());
 		} else {
-			return jreDecrypt(suite, key, nonce, a, c);
+      throw new GeneralSecurityException("Cannot decrypt: " + suite.getTransformation() + " is not supported");
 		}
 	}
 
@@ -103,66 +102,7 @@ public class AeadBlockCipher {
 		if (AES_CCM.equals(suite.getTransformation())) {
 			return CCMBlockCipher.encrypt(key, nonce, a, m, suite.getMacLength());
 		} else {
-			return jreEncrypt(suite, key, nonce, a, m);
+      throw new GeneralSecurityException("Cannot encrypt: " + suite.getTransformation() + " is not supported");
 		}
-	}
-
-	/**
-	 * Decrypt with jre AEAD cipher.
-	 * 
-	 * @param suite the cipher suite
-	 * @param key the encryption key K.
-	 * @param nonce the nonce N.
-	 * @param a the additional authenticated data a.
-	 * @param c the encrypted and authenticated message c.
-	 * @return the decrypted message
-	 * 
-	 * @throws GeneralSecurityException if the message could not be de-crypted,
-	 *             e.g. because the ciphertext's block size is not correct
-	 * @throws InvalidMacException if the message could not be authenticated
-	 */
-	@NotForAndroid
-	private final static byte[] jreDecrypt(CipherSuite suite, SecretKey key, byte[] nonce, byte[] a, byte[] c)
-			throws GeneralSecurityException {
-
-		Cipher cipher = suite.getCipher();
-		GCMParameterSpec parameterSpec = new GCMParameterSpec(suite.getEncKeyLength() * 8, nonce);
-		cipher.init(Cipher.DECRYPT_MODE, key, parameterSpec);
-		cipher.updateAAD(a);
-		return cipher.doFinal(c);
-	}
-
-	/**
-	 * Encrypt with jre AEAD cipher.
-	 * 
-	 * @param suite the cipher suite
-	 * @param key the encryption key K.
-	 * @param nonce the nonce N.
-	 * @param a the additional authenticated data a.
-	 * @param m the message to authenticate and encrypt.
-	 * @return the encrypted and authenticated message.
-	 * @throws GeneralSecurityException if the data could not be encrypted, e.g.
-	 *             because the JVM does not support the AES cipher algorithm
-	 */
-	@NotForAndroid
-	private final static byte[] jreEncrypt(CipherSuite suite, SecretKey key, byte[] nonce, byte[] a, byte[] m)
-			throws GeneralSecurityException {
-		Cipher cipher = suite.getCipher();
-		GCMParameterSpec parameterSpec = new GCMParameterSpec(suite.getEncKeyLength() * 8, nonce);
-		try {
-			cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
-		} catch (InvalidAlgorithmParameterException ex) {
-			// if a record is encrypted twice using the same nonce,"
-			// GCM reports this with "Cannot reuse iv for GCM encryption"
-			// workaround is to use a different nonce and then the repeated
-			// nonce again.
-			byte[] nonceReset = Arrays.copyOf(nonce, nonce.length);
-			nonceReset[0] ^= 0x55;
-			GCMParameterSpec parameterSpecReset = new GCMParameterSpec(suite.getEncKeyLength() * 8, nonceReset);
-			cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpecReset);
-			cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
-		}
-		cipher.updateAAD(a);
-		return cipher.doFinal(m);
 	}
 }

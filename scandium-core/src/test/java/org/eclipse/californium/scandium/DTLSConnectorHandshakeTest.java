@@ -584,17 +584,6 @@ public class DTLSConnectorHandshakeTest {
 	}
 
 	@Test
-	public void testPskGcmHandshake() throws Exception {
-		assumeTrue("GCM requires JVM support!", CipherSuite.TLS_PSK_WITH_AES_128_GCM_SHA256.isSupported());
-		startServer(false, false,  false,  null);
-		DtlsConnectorConfig.Builder builder = new DtlsConnectorConfig.Builder()
-				.setPskStore(new StaticPskStore(CLIENT_IDENTITY, CLIENT_IDENTITY_SECRET.getBytes()))
-				.setSupportedCipherSuites(CipherSuite.TLS_PSK_WITH_AES_128_GCM_SHA256);
-		startClient(false,  null, builder);
-		assertThat(serverHelper.establishedServerSession.getCipherSuite(), is(CipherSuite.TLS_PSK_WITH_AES_128_GCM_SHA256));
-	}
-
-	@Test
 	public void testRpkCbcHandshake() throws Exception {
 		startServer(false, false, false, null);
 		DtlsConnectorConfig.Builder builder = new DtlsConnectorConfig.Builder()
@@ -673,17 +662,5 @@ public class DTLSConnectorHandshakeTest {
 				.setSupportedCipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384);
 		startClient(false,  null, builder);
 		assertThat(serverHelper.establishedServerSession.getCipherSuite(), is(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384));
-	}
-
-	@Test
-	public void testRpkGcmHandshake() throws Exception {
-		assumeTrue("GCM requires JVM support!", CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256.isSupported());
-		startServer(false, false, false, null);
-		DtlsConnectorConfig.Builder builder = new DtlsConnectorConfig.Builder()
-				.setRpkTrustAll()
-				.setIdentity(DtlsTestTools.getClientPrivateKey(), DtlsTestTools.getClientPublicKey())
-				.setSupportedCipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256);
-		startClient(false,  null, builder);
-		assertThat(serverHelper.establishedServerSession.getCipherSuite(), is(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256));
 	}
 }

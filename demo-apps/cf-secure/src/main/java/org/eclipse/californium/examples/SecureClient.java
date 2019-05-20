@@ -94,8 +94,6 @@ public class SecureClient {
 		List<Mode> modes = CredentialsUtil.parse(args, CredentialsUtil.DEFAULT_CLIENT_MODES, SUPPORTED_MODES);
 		if (modes.contains(CredentialsUtil.Mode.PSK) || modes.contains(CredentialsUtil.Mode.ECDHE_PSK)) {
 			builder.setPskStore(new StaticPskStore(CredentialsUtil.OPEN_PSK_IDENTITY, CredentialsUtil.OPEN_PSK_SECRET));
-		} else {
-			builder.setSupportedCipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256);
 		}
 		CredentialsUtil.setupCredentials(builder, CredentialsUtil.CLIENT_NAME, modes);
 		DTLSConnector dtlsConnector = new DTLSConnector(builder.build());
