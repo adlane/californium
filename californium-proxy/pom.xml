@@ -21,7 +21,7 @@
 		<httpasyncclient.version.spec>
 			version="[${versionmask;==;${httpasyncclient.version}},${versionmask;+;${httpasyncclient.version}})"
 		</httpasyncclient.version.spec>
-		<httpcore.version>4.4.5</httpcore.version>
+		<httpcore.version>4.4.11</httpcore.version>
 		<httpcore.version.spec>version="[${versionmask;==;${httpcore.version}},${versionmask;+;${httpcore.version}})"</httpcore.version.spec>
 		<httpclient.version>4.5.2</httpclient.version>
 		<httpclient.version.spec>version="[${versionmask;==;${httpclient.version}},${versionmask;+;${httpclient.version}})"</httpclient.version.spec>
