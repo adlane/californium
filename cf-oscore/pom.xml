@@ -14,7 +14,7 @@
 	<description>Californium (Cf) OSCORE, Object Security for Constrained RESTful Environments</description>
 
 	<properties>
-		<cbor.version>3.0.3</cbor.version>
+		<cbor.version>3.5.1</cbor.version>
 		<numbers.version>1.0.2</numbers.version>
 	</properties>
 
