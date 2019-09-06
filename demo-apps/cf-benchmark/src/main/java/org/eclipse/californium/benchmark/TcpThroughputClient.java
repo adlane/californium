@@ -52,7 +52,7 @@ public class TcpThroughputClient {
 		CoapClient coapClient = new CoapClient("coap+tcp", "localhost", tcpPort, "echo");
 		try {
 			Random random = new Random(0);
-			long messages = 200_000;
+			long messages = 200000;
 			long total = 0;
 			long start = System.nanoTime();
 			for (int i = 0; i < messages; i++) {
