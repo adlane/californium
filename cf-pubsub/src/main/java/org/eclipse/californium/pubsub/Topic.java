@@ -81,7 +81,7 @@ public class Topic {
      * @return a sorted ArrayList of Topics
      */
     public static ArrayList<Topic> makeArrayList(Set<WebLink> swl) {
-        ArrayList<Topic> at = new ArrayList<>();
+        ArrayList<Topic> at = new ArrayList<Topic>();
         for (WebLink wl : swl) {
             Topic t = new Topic(wl);
             t.getTopics(t, at);

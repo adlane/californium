@@ -144,7 +144,7 @@ public class HelloExtensionsTest {
 
 	private void givenDuplicateHelloExtensions() {
 		int length = 0;
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// a supported client certificate type extension
 		byte[] ext = DtlsTestTools.newClientCertificateTypesExtension(CertificateType.X_509.getCode());
 		length += ext.length;
@@ -163,7 +163,7 @@ public class HelloExtensionsTest {
 
 	private void givenBrokenHelloExtensions() {
 		int length = 0;
-		List<byte[]> extensions = new LinkedList<>();
+		List<byte[]> extensions = new LinkedList<byte[]>();
 		// a supported client certificate type extension
 		byte[] ext = newBrokenClientCertificateTypesExtension(CertificateType.X_509.getCode());
 		length += ext.length;

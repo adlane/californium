@@ -527,7 +527,7 @@ public enum CipherSuite {
 			throw new IllegalArgumentException("KeyExchangeAlgorithms must not be empty!");
 		}
 		List<KeyExchangeAlgorithm> keyExchanges = Arrays.asList(keyExchangeAlgorithms);
-		List<CipherSuite> list = new ArrayList<>();
+		List<CipherSuite> list = new ArrayList<CipherSuite>();
 		for (CipherSuite suite : values()) {
 			if (!recommendedCipherSuitesOnly || suite.recommendedCipherSuite) {
 				if (suite.isSupported() && keyExchanges.contains(suite.keyExchange)) {

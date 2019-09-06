@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public final class AdditionalInfo {
 
-	private static final Map<String, Object> EMPTY_MAP = new HashMap<>(0);
+	private static final Map<String, Object> EMPTY_MAP = new HashMap<String, Object>(0);
 	private final Map<String, Object> info;
 
 	/**
@@ -41,7 +41,7 @@ public final class AdditionalInfo {
 		if (additionalInfo == null) {
 			info = EMPTY_MAP;
 		} else {
-			this.info = new HashMap<>(additionalInfo);
+			this.info = new HashMap<String, Object>(additionalInfo);
 		}
 	}
 

@@ -105,7 +105,7 @@ public class ConnectorHelper {
 	InMemorySessionCache serverSessionCache;
 	SimpleRawDataChannel serverRawDataChannel;
 	RawDataProcessor serverRawDataProcessor;
-	Map<InetSocketAddress, LatchSessionListener> sessionListenerMap = new ConcurrentHashMap<>();
+	Map<InetSocketAddress, LatchSessionListener> sessionListenerMap = new ConcurrentHashMap<InetSocketAddress, LatchSessionListener>();
 	DTLSSession establishedServerSession;
 
 	DtlsConnectorConfig serverConfig;
@@ -468,7 +468,7 @@ public class ConnectorHelper {
 
 	static class RecordCollectorDataHandler implements DataHandler {
 
-		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<>();
+		private BlockingQueue<List<Record>> records = new LinkedBlockingQueue<List<Record>>();
 		private Map<Integer, DTLSSession> apply = new HashMap<Integer, DTLSSession>(8);
 		private final ConnectionIdGenerator cidGenerator;
 

@@ -42,7 +42,7 @@ public class CountingCoapHandler implements CoapHandler {
 	/**
 	 * Recorded responses.
 	 */
-	public List<CoapResponse> responses = new ArrayList<>();
+	public List<CoapResponse> responses = new ArrayList<CoapResponse>();
 	/**
 	 * counter for {@link #onLoad(CoapResponse)} calls.
 	 */

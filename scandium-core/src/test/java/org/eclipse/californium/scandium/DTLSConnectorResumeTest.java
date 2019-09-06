@@ -113,7 +113,7 @@ public class DTLSConnectorResumeTest {
 	@BeforeClass
 	public static void startServer() throws Exception {
 
-		Map<String, Object> info = new HashMap<>();
+		Map<String, Object> info = new HashMap<String, Object>();
 		info.put(KEY_DEVICE_ID, DEVICE_ID);
 		final AdditionalInfo applicationLevelInfo = AdditionalInfo.from(info);
 

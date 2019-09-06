@@ -235,7 +235,7 @@ public class SecureNatTest {
 		createNat();
 
 		int overallResumes = 0;
-		List<Integer> resumeEndpoints = new ArrayList<>();
+		List<Integer> resumeEndpoints = new ArrayList<Integer>();
 
 		CoapClient client = new CoapClient(uri);
 		CoapResponse coapResponse = client.get();

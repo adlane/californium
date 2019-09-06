@@ -115,7 +115,7 @@ public class DTLSConnectorHandshakeTest {
 	@BeforeClass
 	public static void init() {
 
-		Map<String, Object> info = new HashMap<>();
+		Map<String, Object> info = new HashMap<String, Object>();
 		info.put(KEY_SERVER_NAME, SERVERNAME);
 		additionalServerInfo = AdditionalInfo.from(info);
 

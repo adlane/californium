@@ -154,7 +154,7 @@ public class ThreadsRule implements TestRule {
 	 *             too fast or new threads are still alive.
 	 */
 	public void checkThreadLeak(List<Thread> activeThreads, boolean reportLeakAsException) {
-		List<Thread> listAfter = new ArrayList<>(getActiveThreads());
+		List<Thread> listAfter = new ArrayList<Thread>(getActiveThreads());
 		listAfter.removeAll(activeThreads);
 		if (!listAfter.isEmpty()) {
 			for (Thread thread : listAfter) {
@@ -163,7 +163,7 @@ public class ThreadsRule implements TestRule {
 				} catch (InterruptedException e) {
 				}
 			}
-			listAfter = new ArrayList<>(getActiveThreads());
+			listAfter = new ArrayList<Thread>(getActiveThreads());
 			listAfter.removeAll(activeThreads);
 			if (!listAfter.isEmpty()) {
 				dump("leaking " + description, listAfter);
