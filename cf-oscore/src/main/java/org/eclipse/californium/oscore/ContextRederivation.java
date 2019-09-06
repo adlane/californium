@@ -54,7 +54,13 @@ public class ContextRederivation {
 	{
 		try {
 			rederive(db, uri);
-		} catch (ConnectorException | IOException | OSException e) {
+		} catch (ConnectorException e) {
+			LOGGER.error(ErrorDescriptions.CONTEXT_REGENERATION_FAILED);
+			throw new CoapOSException(ErrorDescriptions.CONTEXT_REGENERATION_FAILED, ResponseCode.BAD_REQUEST);
+		} catch (IOException e) {
+			LOGGER.error(ErrorDescriptions.CONTEXT_REGENERATION_FAILED);
+			throw new CoapOSException(ErrorDescriptions.CONTEXT_REGENERATION_FAILED, ResponseCode.BAD_REQUEST);
+		} catch (OSException e) {
 			LOGGER.error(ErrorDescriptions.CONTEXT_REGENERATION_FAILED);
 			throw new CoapOSException(ErrorDescriptions.CONTEXT_REGENERATION_FAILED, ResponseCode.BAD_REQUEST);
 		}

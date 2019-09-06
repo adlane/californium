@@ -56,7 +56,11 @@ public class Topic {
         String corchete = wl.toString().substring(wl.toString().indexOf('[') + 1);
         try {
             this.ct = Integer.parseInt(corchete.substring(0, 1));
-        } catch (NullPointerException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        } catch (NullPointerException e) {
+            this.ct = Integer.parseInt(corchete.substring(0, 0));
+        } catch (NumberFormatException e) {
+            this.ct = Integer.parseInt(corchete.substring(0, 0));
+        } catch (ArrayIndexOutOfBoundsException e) {
             this.ct = Integer.parseInt(corchete.substring(0, 0));
         }
     }

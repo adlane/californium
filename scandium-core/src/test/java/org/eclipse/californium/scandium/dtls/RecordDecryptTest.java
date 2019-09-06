@@ -168,7 +168,9 @@ public class RecordDecryptTest {
 			for (int delta = -size; delta < size + 10; ++delta) {
 				try {
 					testEncryptDecryptFragmentFailure(payload, new FixedLengthJuggler(delta));
-				} catch (GeneralSecurityException | HandshakeException ex) {
+				} catch (GeneralSecurityException ex) {
+					// such exception are OK, RuntimeException are failures
+				} catch (HandshakeException ex) {
 					// such exception are OK, RuntimeException are failures
 				}
 			}
@@ -220,7 +222,9 @@ public class RecordDecryptTest {
 			byte[] payload = Arrays.copyOf(payloadData, size);
 			try {
 				testEncryptDecryptRecordFailure(payload, juggler);
-			} catch (GeneralSecurityException | HandshakeException ex) {
+			} catch (GeneralSecurityException ex) {
+				// such exception are OK, RuntimeException are failures
+			} catch (HandshakeException ex) {
 				// such exception are OK, RuntimeException are failures
 			}
 		}
@@ -265,7 +269,9 @@ public class RecordDecryptTest {
 			byte[] payload = Arrays.copyOf(payloadData, size);
 			try {
 				testEncryptDecryptFragmentFailure(payload, juggler);
-			} catch (GeneralSecurityException | HandshakeException ex) {
+			} catch (GeneralSecurityException ex) {
+				// such exception are OK, RuntimeException are failures
+			} catch (HandshakeException ex) {
 				// such exception are OK, RuntimeException are failures
 			}
 		}
