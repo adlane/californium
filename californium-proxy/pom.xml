@@ -17,7 +17,7 @@
 	<description>Cross-proxy module</description>
 
 	<properties>
-		<httpasyncclient.version>4.1.2</httpasyncclient.version>
+		<httpasyncclient.version>4.1.4</httpasyncclient.version>
 		<httpasyncclient.version.spec>
 			version="[${versionmask;==;${httpasyncclient.version}},${versionmask;+;${httpasyncclient.version}})"
 		</httpasyncclient.version.spec>
